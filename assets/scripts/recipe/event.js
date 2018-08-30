@@ -5,14 +5,6 @@ const store = require('../store')
 const api = require('./api')
 const ui = require('./ui')
 
-const onSignUp = function (event) {
-  event.preventDefault()
-  const data = getFormFields(this)
-  store.credentials = data
-  api.signUp(data)
-    .then(onSignUpIn)
-    .catch(ui.signUpFailure)
-}
 
 const onSignUpIn = function (event) {
   delete store.credentials.password_confirmation
@@ -39,19 +31,16 @@ const onSignOut = function (event) {
     .catch(ui.signOutFailure)
 }
 
-const onChangePassword = function (event) {
+const onAddRecipe = function (event) {
   event.preventDefault()
   const data = getFormFields(this)
-  api.changePassword(data)
-    .then(ui.changePasswordSuccess)
-    .catch(ui.changePasswordFailure)
+  api.addRecipe(data)
+    .then(ui.addRecipeSuccess)
+    .catch(ui.addRecipeFailure)
 }
 
 const addHandlers = () => {
-  $('#sign-up').on('submit', onSignUp)
-  $('#sign-in').on('submit', onSignIn)
-  $('#sign-out').on('submit', onSignOut)
-  $('#change-password').on('submit', onChangePassword)
+  $('#recipe').on('submit', onAddRecipe)
 }
 
 module.exports = {
