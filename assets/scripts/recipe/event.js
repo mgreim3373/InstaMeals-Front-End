@@ -1,5 +1,6 @@
 'use strict'
 
+const RecipesTemplate = require('../templates/recipes.handlebars')
 const getFormFields = require(`../../../lib/get-form-fields`)
 const store = require('../store')
 const api = require('./api')
@@ -45,14 +46,20 @@ const onShowRecipes = function (event) {
   event.preventDefault()
   const data = getFormFields(this)
   api.showRecipes(data)
-    .then(ui.showRecipeSuccess)
+    .then(showRecipeSuccess)
   //  .catch(ui.selectRecipeFailure)
+}
+
+const showRecipeSuccess = function (data) {
+  const showRecipeHtml = RecipesTemplate({ recipes: data.recipes })
+  $('.content').html(showRecipeHtml)
+  $('.deleteRecipe').on('submit', onDeleteRecipe)
 }
 
 const addHandlers = () => {
   $('#recipeUpdate').on('submit', onUpdateRecipe)
   $('#recipe').on('submit', onAddRecipe)
-  $('#deleteRecipe').on('submit', onDeleteRecipe)
+  $('.deleteRecipe').on('submit', onDeleteRecipe)
   $('#selectRecipe').on('submit', onSelectRecipe)
   $('#showRecipes').on('submit', onShowRecipes)
 }

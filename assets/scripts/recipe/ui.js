@@ -1,6 +1,6 @@
 'use strict'
-
 const store = require('../store')
+
 
 const deleteRecipeSuccess = function () {
   console.log('deleted')
@@ -16,16 +16,13 @@ const updateRecipeSuccess = function (data) {
 
 const selectRecipeSuccess = function (data) {
   console.log(data)
-}
-
-const showRecipeSuccess = function (data) {
-  console.log(data)
+  const selectRecipeHtml = RecipesTemplate({ recipes: data.recipes })
+  $('.content').html(selectRecipeHtml)
 }
 
 module.exports = {
 deleteRecipeSuccess,
 selectRecipeSuccess,
 updateRecipeSuccess,
-addRecipeSuccess,
-showRecipeSuccess
+addRecipeSuccess
 }

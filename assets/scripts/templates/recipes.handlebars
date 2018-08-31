@@ -1,0 +1,20 @@
+{{#each recipes as |recipe|}}
+  {{log book}}
+
+  <div>
+    <h1> Id {{recipe.id}} </h1>
+    <p> Prep Time {{recipe.prep_time}} </p>
+    <p> Cook Time {{recipe.cook_time}} </p>
+    <p> Serving Size {{recipe.serving_size}} </p>
+    <p> Pot Mode {{recipe.pot_mode}} </p>
+    <p> Pot Pressure {{recipe.pot_pressure}} </p>
+    <p> Prep Instructions {{recipe.prep_instructions}} </p>
+    <p> User {{recipe.user.email}} </p>
+  </div>
+
+  <form class="deleteRecipe">
+    <input type="integer" name="id" placeholder="Recipe Id">
+    <input type="submit" value="Delete Recipe">
+  </form>
+
+{{/each}}
