@@ -5,30 +5,13 @@ const store = require('../store')
 const api = require('./api')
 const ui = require('./ui')
 
-
-const onSignUpIn = function (event) {
-  delete store.credentials.password_confirmation
-  let dataWithoutPC = store.credentials
-  api.signIn(dataWithoutPC)
-    .then(ui.signInSuccess)
-    .catch(ui.signInFailure)
-}
-
-const onSignIn = function (event) {
+const onUpdateRecipe = function (event) {
   event.preventDefault()
   const data = getFormFields(this)
-
-  api.signIn(data)
-    .then(ui.signInSuccess)
-    .catch(ui.signInFailure)
-}
-
-const onSignOut = function (event) {
-  event.preventDefault()
-  console.log('yay')
-  api.signOut()
-    .then(ui.signOutSuccess)
-    .catch(ui.signOutFailure)
+  store.id = data.id
+  api.updateRecipe(data)
+    .then(ui.updateRecipe)
+    .catch(ui.updateRecipeFailure)
 }
 
 const onAddRecipe = function (event) {
@@ -39,8 +22,31 @@ const onAddRecipe = function (event) {
     .catch(ui.addRecipeFailure)
 }
 
+const onDeleteRecipe = function (event) {
+  event.preventDefault()
+  const data = getFormFields(this)
+  console.log(data.id)
+  store.id = data.id
+  api.deleteRecipe(data)
+    .then(ui.deleteRecipeSuccess)
+    .catch(ui.deleteRecipeFailure)
+}
+
+const onSelectRecipe = function (event) {
+  event.preventDefault()
+  const data = getFormFields(this)
+  console.log(data.id)
+  store.id = data.id
+  api.selectRecipe(data)
+    .then(ui.selectRecipeSuccess)
+  //  .catch(ui.selectRecipeFailure)
+}
+
 const addHandlers = () => {
+  $('#recipeUpdate').on('submit', onUpdateRecipe)
   $('#recipe').on('submit', onAddRecipe)
+  $('#deleteRecipe').on('submit', onDeleteRecipe)
+  $('#selectRecipe').on('submit', onSelectRecipe)
 }
 
 module.exports = {
