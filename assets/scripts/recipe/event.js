@@ -59,6 +59,7 @@ const onShowRecipes = function (event) {
 }
 
 const showRecipeSuccess = function (data) {
+  console.log(data)
   const showRecipesHtml = RecipesTemplate({ recipes: data.recipes })
   $('.content').html(showRecipesHtml)
   $('.deleteRecipe').on('submit', onDeleteRecipe)

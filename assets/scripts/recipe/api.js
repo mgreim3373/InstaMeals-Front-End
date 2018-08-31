@@ -14,6 +14,7 @@ const addRecipe = function (data) {
     },
       data: {
         recipe: {
+          name: data.name,
           prep_time: data.prep_time,
           cook_time: data.cook_time,
           serving_size: data.serving_size,
@@ -35,6 +36,7 @@ const updateRecipe = function (data) {
     },
       data: {
         recipe: {
+          name: data.name,
           prep_time: data.prep_time,
           cook_time: data.cook_time,
           serving_size: data.serving_size,
