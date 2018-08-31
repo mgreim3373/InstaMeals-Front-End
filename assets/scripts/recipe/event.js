@@ -10,7 +10,7 @@ const onUpdateRecipe = function (event) {
   const data = getFormFields(this)
   store.id = data.id
   api.updateRecipe(data)
-    .then(ui.updateRecipe)
+    .then(ui.updateRecipeSuccess)
     .catch(ui.updateRecipeFailure)
 }
 
@@ -35,10 +35,17 @@ const onDeleteRecipe = function (event) {
 const onSelectRecipe = function (event) {
   event.preventDefault()
   const data = getFormFields(this)
-  console.log(data.id)
   store.id = data.id
   api.selectRecipe(data)
     .then(ui.selectRecipeSuccess)
+  //  .catch(ui.selectRecipeFailure)
+}
+
+const onShowRecipes = function (event) {
+  event.preventDefault()
+  const data = getFormFields(this)
+  api.showRecipes(data)
+    .then(ui.showRecipeSuccess)
   //  .catch(ui.selectRecipeFailure)
 }
 
@@ -47,6 +54,7 @@ const addHandlers = () => {
   $('#recipe').on('submit', onAddRecipe)
   $('#deleteRecipe').on('submit', onDeleteRecipe)
   $('#selectRecipe').on('submit', onSelectRecipe)
+  $('#showRecipes').on('submit', onShowRecipes)
 }
 
 module.exports = {

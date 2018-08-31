@@ -66,9 +66,20 @@ const selectRecipe = function () {
   })
 }
 
+const showRecipes = function () {
+  return $.ajax({
+    url: config.apiUrl + '/recipes',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   addRecipe,
   updateRecipe,
   deleteRecipe,
-  selectRecipe
+  selectRecipe,
+  showRecipes
 }
