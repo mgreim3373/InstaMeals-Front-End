@@ -1,6 +1,7 @@
 'use strict'
 
 const RecipesTemplate = require('../templates/recipes.handlebars')
+const RecipeTemplate = require('../templates/recipe.handlebars')
 const getFormFields = require(`../../../lib/get-form-fields`)
 const store = require('../store')
 const api = require('./api')
@@ -38,8 +39,15 @@ const onSelectRecipe = function (event) {
   const data = getFormFields(this)
   store.id = data.id
   api.selectRecipe(data)
-    .then(ui.selectRecipeSuccess)
+    .then(selectRecipeSuccess)
   //  .catch(ui.selectRecipeFailure)
+}
+
+const selectRecipeSuccess = function (data) {
+  console.log(data)
+  const selectRecipeHtml = RecipeTemplate({ recipe: data.recipe })
+  $('.content').html(selectRecipeHtml)
+  $('.deleteRecipe').on('submit', onDeleteRecipe)
 }
 
 const onShowRecipes = function (event) {
@@ -51,8 +59,8 @@ const onShowRecipes = function (event) {
 }
 
 const showRecipeSuccess = function (data) {
-  const showRecipeHtml = RecipesTemplate({ recipes: data.recipes })
-  $('.content').html(showRecipeHtml)
+  const showRecipesHtml = RecipesTemplate({ recipes: data.recipes })
+  $('.content').html(showRecipesHtml)
   $('.deleteRecipe').on('submit', onDeleteRecipe)
 }
 
