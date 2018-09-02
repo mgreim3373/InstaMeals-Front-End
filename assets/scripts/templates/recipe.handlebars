@@ -6,11 +6,24 @@
     <p> Serving Size {{recipe.serving_size}} </p>
     <p> Pot Mode {{recipe.pot_mode}} </p>
     <p> Pot Pressure {{recipe.pot_pressure}} </p>
-    <p> Prep Instructions {{recipe.prep_instructions}} </p>
+    <p> Prep Instructions {{recipe.prep_instruction}} </p>
     <p> User {{recipe.user.email}} </p>
   </div>
 
   <form class="deleteRecipe">
     <input type="integer" name="id" placeholder="Recipe Id">
     <input type="submit" value="Delete Recipe">
+  </form>
+
+  <form class="recipeUpdate" class="border">
+    <input type="integer" name="id" placeholder="Id">
+    <input type="integer" name="prep_time" placeholder="Preparation Time">
+    <input type="text" name="name" placeholder="name">
+    <input type="integer" name="cook_time" placeholder="Cook Time">
+    <input type="integer" name="serving_size" placeholder="Serving Size">
+    <input type="text" name="pot_mode" placeholder="Pot Mode">
+    <input type="text" name="pot_pressure" placeholder="Pot Pressure">
+    <input type="text" name="ingredient" placeholder="ingredient">
+    <input type="text" name="prep_instruction" placeholder="Preparation Instructions">
+    <input type="submit" value="Update">
   </form>

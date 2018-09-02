@@ -40,14 +40,17 @@ const onSelectRecipe = function (event) {
   store.id = data.id
   api.selectRecipe(data)
     .then(selectRecipeSuccess)
-  //  .catch(ui.selectRecipeFailure)
+    .catch(ui.selectRecipeFailure)
 }
 
 const selectRecipeSuccess = function (data) {
   console.log(data)
+  $('#selectRecipe input[name="id"]').val('')
   const selectRecipeHtml = RecipeTemplate({ recipe: data.recipe })
   $('.content').html(selectRecipeHtml)
   $('.deleteRecipe').on('submit', onDeleteRecipe)
+  $('.recipeUpdate').on('submit', onUpdateRecipe)
+  $('.selectRecipe input[name="id"]').val('')
 }
 
 const onShowRecipes = function (event) {
@@ -55,7 +58,7 @@ const onShowRecipes = function (event) {
   const data = getFormFields(this)
   api.showRecipes(data)
     .then(showRecipeSuccess)
-  //  .catch(ui.selectRecipeFailure)
+    .catch(ui.selectRecipeFailure)
 }
 
 const showRecipeSuccess = function (data) {
@@ -63,10 +66,11 @@ const showRecipeSuccess = function (data) {
   const showRecipesHtml = RecipesTemplate({ recipes: data.recipes })
   $('.content').html(showRecipesHtml)
   $('.deleteRecipe').on('submit', onDeleteRecipe)
+  $('.recipeUpdate').on('submit', onUpdateRecipe)
 }
 
 const addHandlers = () => {
-  $('#recipeUpdate').on('submit', onUpdateRecipe)
+  $('.recipeUpdate').on('submit', onUpdateRecipe)
   $('#recipe').on('submit', onAddRecipe)
   $('.deleteRecipe').on('submit', onDeleteRecipe)
   $('#selectRecipe').on('submit', onSelectRecipe)
