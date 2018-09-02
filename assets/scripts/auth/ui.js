@@ -18,6 +18,11 @@ const signInSuccess = function (data) {
   $('#sign-up input[name="credentials[password_confirmation]"]').val('')
   $('#sign-in input[name="credentials[password]"]').val('')
   $('#sign-in input[name="credentials[email]"]').val('')
+  $('#nav').removeClass('hide')
+  $('#sign-up').addClass('hide')
+  $('#sign-in').addClass('hide')
+  $('#change-password').removeClass('hide')
+  $('#sign-out').removeClass('hide')
   console.log('success')
 }
 
@@ -36,6 +41,12 @@ const signOutSuccess = function () {
   $('#sign-up input[name="credentials[password]"]').val('')
   $('#sign-up input[name="credentials[email]"]').val('')
   $('#sign-up input[name="credentials[password_confirmation]"]').val('')
+  $('#nav').addClass('hide')
+  $('#sign-up').removeClass('hide')
+  $('#sign-in').removeClass('hide')
+  $('#change-password').addClass('hide')
+  $('#sign-out').addClass('hide')
+  $('.handlebars').addClass('hide')
   console.log('success')
   store.user = null
 }

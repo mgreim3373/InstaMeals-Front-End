@@ -51,6 +51,7 @@ const selectRecipeSuccess = function (data) {
   $('.deleteRecipe').on('submit', onDeleteRecipe)
   $('.recipeUpdate').on('submit', onUpdateRecipe)
   $('.selectRecipe input[name="id"]').val('')
+  $('.handlebars').removeClass('hide')
 }
 
 const onShowRecipes = function (event) {
@@ -67,6 +68,7 @@ const showRecipeSuccess = function (data) {
   $('.content').html(showRecipesHtml)
   $('.deleteRecipe').on('submit', onDeleteRecipe)
   $('.recipeUpdate').on('submit', onUpdateRecipe)
+  $('.handlebars').removeClass('hide')
 }
 
 const addHandlers = () => {

@@ -1,8 +1,8 @@
 {{#each recipes as |recipe|}}
-
-  <div>
-    <h1> Id {{recipe.id}} </h1>
-    <p> Name {{recipe.name}} </p>
+<div class = 'handlebars'>
+  <section>
+    <h1> Name {{recipe.name}} </h1>
+    <p> Id {{recipe.id}} </p>
     <p> Prep Time {{recipe.prep_time}} </p>
     <p> Cook Time {{recipe.cook_time}} </p>
     <p> Serving Size {{recipe.serving_size}} </p>
@@ -10,7 +10,7 @@
     <p> Pot Pressure {{recipe.pot_pressure}} </p>
     <p> Prep Instructions {{recipe.prep_instruction}} </p>
     <p> User {{recipe.user.email}} </p>
-  </div>
+  </section>
 
   <form class="deleteRecipe">
     <input type="integer" name="id" placeholder="Recipe Id">
@@ -29,5 +29,6 @@
     <input type="text" name="prep_instruction" placeholder="Preparation Instructions">
     <input type="submit" value="Update">
   </form>
+</div>
 
 {{/each}}

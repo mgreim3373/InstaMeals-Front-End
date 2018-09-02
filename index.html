@@ -13,7 +13,28 @@
     </head>
     <body>
 
-      <h1>Browser Template</h1>
+    <nav id = 'nav' class="navbar navbar-expand-lg navbar-light bg-light hide">
+          <a class="navbar-brand">InstaMeals</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+              </li>
+            </ul>
+            <span class="navbar-text">
+              Navbar text with an inline element
+            </span>
+          </div>
+        </nav>
 
       <form id="sign-in" class="border">
         <input type="text" name="credentials[email]" placeholder="Email">
@@ -38,36 +59,6 @@
         <input type="password" name="passwords[old]" placeholder="Old Password">
         <input type="password" name="passwords[new]" placeholder="New Password">
         <input type="submit" value="Change Password">
-      </form>
-
-      <form id="recipe" class="border">
-        <input type="integer" name="prep_time" placeholder="Preparation Time">
-        <input type="text" name="name" placeholder="name">
-        <input type="integer" name="cook_time" placeholder="Cook Time">
-        <input type="integer" name="serving_size" placeholder="Serving Size">
-        <input type="text" name="pot_mode" placeholder="Pot Mode">
-        <input type="text" name="pot_pressure" placeholder="Pot Pressure">
-        <input type="text" name="ingredient" placeholder="ingredient">
-        <input type="text" name="prep_instruction" placeholder="Preparation Instructions">
-        <input type="submit" value="Submit">
-      </form>
-
-      <form class="recipeUpdate" class="border">
-        <input type="integer" name="id" placeholder="Id">
-        <input type="integer" name="prep_time" placeholder="Preparation Time">
-        <input type="text" name="name" placeholder="name">
-        <input type="integer" name="cook_time" placeholder="Cook Time">
-        <input type="integer" name="serving_size" placeholder="Serving Size">
-        <input type="text" name="pot_mode" placeholder="Pot Mode">
-        <input type="text" name="pot_pressure" placeholder="Pot Pressure">
-        <input type="text" name="ingredient" placeholder="ingredient">
-        <input type="text" name="prep_instruction" placeholder="Preparation Instructions">
-        <input type="submit" value="Update">
-      </form>
-
-      <form class="deleteRecipe border">
-        <input type="integer" name="id" placeholder="Recipe Id">
-        <input type="submit" value="Delete Recipe">
       </form>
 
       <form id="selectRecipe" class="border">
