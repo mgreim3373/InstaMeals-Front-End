@@ -12,44 +12,50 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
+<div class = "container-fluid">
+<nav class="navbar fixed-top navbar-light"style="background-color: #e3f2fd">
+<a class="navbar-brand">InstaMeals</a>
+<form id = "search" class="form-inline hide">
+  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+</nav>
+</div>
+<section id = page-container class= "col-md-6 offset-md-3">
 
-    <nav id = 'nav' class="navbar navbar-expand-lg navbar-light bg-light hide">
-          <a class="navbar-brand">InstaMeals</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-              </li>
-            </ul>
-            <span class="navbar-text">
-              Navbar text with an inline element
-            </span>
-          </div>
-        </nav>
+<form  id="sign-in" >
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" name="credentials[email]" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" name="credentials[password]" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
-      <form id="sign-in" class="border">
-        <input type="text" name="credentials[email]" placeholder="Email">
-        <input type="password" name="credentials[password]" placeholder="Password">
-        <input type="submit" value="Sign In">
-        <button class="back-modal" type="button">Back</button>
-      </form>
+<form  id="sign-up" >
+  <div class="form-group">
+    <label>Email address</label>
+    <input type="email" name="credentials[email]" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" name="credentials[password]" class="form-control" placeholder="Password">
+  </div>
 
-      <form id="sign-up" class="border">
-        <input type="text" name="credentials[email]" placeholder="Email">
-        <input type="password" name="credentials[password]" placeholder="Password">
-        <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
-        <input type="submit" value="Sign Up">
-        <button class="back-modal" type="button">Back</button>
-      </form>
+  <div class="form-group">
+    <label>Password Confirmation</label>
+    <input type="password" name="credentials[password_confirmation]" class="form-control" placeholder="Password">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+
+
 
       <form id="sign-out" class="border hide">
         <input type="submit" value="Sign Out">
@@ -71,6 +77,6 @@
       </form>
 
       <div class = "content"></div>
-
+</section>
     </body>
 </html>

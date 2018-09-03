@@ -1,11 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
 
 body {
-  background-color: purple;
 }
 
-section {
-  background-color: blue;
+#page-container {
+  padding-top: 70px;
 }
 
 .hide {
