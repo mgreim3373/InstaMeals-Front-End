@@ -21,7 +21,8 @@ const addRecipe = function (data) {
           pot_mode: data.pot_mode,
           pot_pressure: data.pot_pressure,
           ingredient: data.ingredient,
-          prep_instruction: data.prep_instruction
+          prep_instruction: data.prep_instruction,
+          photo: data.photo
         }
     }})
 }
@@ -43,7 +44,8 @@ const updateRecipe = function (data) {
           pot_mode: data.pot_mode,
           pot_pressure: data.pot_pressure,
           ingredient: data.ingredient,
-          prep_instruction: data.prep_instruction
+          prep_instruction: data.prep_instruction,
+          photo: data.photo
         }
     }})
 }

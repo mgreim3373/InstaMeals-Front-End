@@ -10,6 +10,8 @@
     <p> Pot Pressure: {{recipe.pot_pressure}} </p>
     <p> Prep Instructions: {{recipe.prep_instruction}} </p>
     <p> User: {{recipe.user.email}} </p>
+    <img class= "col-md-4 offset-md-2" src="{{recipe.photo}}">
+
   </section>
 
   <form class="deleteRecipe">
@@ -27,6 +29,7 @@
     <input type="text" name="pot_pressure" placeholder="Pot Pressure">
     <input type="text" name="ingredient" placeholder="ingredient">
     <input type="text" name="prep_instruction" placeholder="Preparation Instructions">
+    <input type="text" name="photo" placeholder="photo">
     <input type="submit" value="Update">
   </form>
 </div>
