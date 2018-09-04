@@ -6,19 +6,6 @@ const deleteRecipeSuccess = function () {
   $('.deleteRecipe input[name="id"]').val('')
 }
 
-const addRecipeSuccess = function (data) {
-  console.log('success')
-  $('#recipe input[name="id"]').val('')
-  $('#recipe input[name="prep_time"]').val('')
-  $('#recipe input[name="name"]').val('')
-  $('#recipe input[name="cook_time"]').val('')
-  $('#recipe input[name="serving_size"]').val('')
-  $('#recipe input[name="pot_mode"]').val('')
-  $('#recipe input[name="pot_pressure"]').val('')
-  $('#recipe input[name="ingredient"]').val('')
-  $('#recipe input[name="prep_instruction"]').val('')
-}
-
 const addRecipeFailure = function (data) {
   console.log('fail')
   $('#recipe input[name="id"]').val('')
@@ -30,6 +17,7 @@ const addRecipeFailure = function (data) {
   $('#recipe input[name="pot_pressure"]').val('')
   $('#recipe input[name="ingredient"]').val('')
   $('#recipe input[name="prep_instruction"]').val('')
+  $('#recipe input[name="photo"]').val('')
 }
 
 const updateRecipeSuccess = function (data) {
@@ -43,6 +31,7 @@ const updateRecipeSuccess = function (data) {
   $('#recipeUpdate input[name="pot_pressure"]').val('')
   $('#recipeUpdate input[name="ingredient"]').val('')
   $('#recipeUpdate input[name="prep_instruction"]').val('')
+  $('#recipe input[name="photo"]').val('')
 }
 
 const updateRecipeFailure = function (data) {
@@ -56,6 +45,7 @@ const updateRecipeFailure = function (data) {
   $('#recipeUpdate input[name="pot_pressure"]').val('')
   $('#recipeUpdate input[name="ingredient"]').val('')
   $('#recipeUpdate input[name="prep_instruction"]').val('')
+  $('#recipe input[name="photo"]').val('')
 }
 
 const selectRecipeFailure = function (data) {
@@ -71,7 +61,6 @@ const deleteRecipeFailure = function (data) {
 module.exports = {
 deleteRecipeSuccess,
 updateRecipeSuccess,
-addRecipeSuccess,
 updateRecipeFailure,
 deleteRecipeFailure,
 selectRecipeFailure,

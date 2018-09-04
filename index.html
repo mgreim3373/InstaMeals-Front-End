@@ -57,39 +57,92 @@
 
 
 
-      <form id="sign-out" class="border hide">
-        <input type="submit" value="Sign Out">
+      <form id="sign-out" class="hide">
+        <input type="submit" class="btn btn-primary" value="Sign Out">
       </form>
 
-      <form id="change-password" class="border hide">
-        <input type="password" name="passwords[old]" placeholder="Old Password">
-        <input type="password" name="passwords[new]" placeholder="New Password">
-        <input type="submit" value="Change Password">
-      </form>
+      <button type="button" id="changePasswordButton" class="btn btn-primary hide" data-toggle="modal" data-target="#passwordChange">Change Password</button>
 
-      <form id="selectRecipe" class="border">
-        <input type="integer" name="id" placeholder="Recipe Id">
-        <input type="submit" value="Select Recipe">
-      </form>
+      <div class="modal fade bd-example-modal-lg" id="passwordChange">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title">Change Password</h2>
+                <button type="button" class="close" data-dismiss="modal">
+                <span>&times;</span></button>
+            </div>
 
-      <form id="showRecipes" class="border">
-        <input type="submit" value="View All Recipes">
+            <div class="modal-body">
+              <form id="change-password">
+                <input class="form-control" type="password" name="passwords[old]" placeholder="Old Password">
+                <input class="form-control" type="password" name="passwords[new]" placeholder="New Password">
+                <input type="submit" value="Change Password">
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <button type="button" id="selectRecipeButton" class="btn btn-primary hide" data-toggle="modal" data-target="#selectRecipeModal">Select Recipe</button>
+
+      <div class="modal fade bd-example-modal-lg" id="selectRecipeModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title">Select Recipe</h2>
+                <button type="button" class="close" data-dismiss="modal">
+                <span>&times;</span></button>
+            </div>
+
+            <div class="modal-body">
+              <form id="selectRecipe">
+                <input class="form-control" type="integer" name="id" placeholder="Recipe Id">
+                <input type="submit" value="Select Recipe">
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form id="showRecipes" class="hide">
+        <input type="submit" class="btn btn-primary"value="View All Recipes">
       </form>
 
       <div class = "content"></div>
 
-      <form id="recipe" class="border">
-        <input type="integer" name="prep_time" placeholder="Preparation Time">
-        <input type="text" name="name" placeholder="name">
-        <input type="integer" name="cook_time" placeholder="Cook Time">
-        <input type="integer" name="serving_size" placeholder="Serving Size">
-        <input type="text" name="pot_mode" placeholder="Pot Mode">
-        <input type="text" name="pot_pressure" placeholder="Pot Pressure">
-        <input type="text" name="ingredient" placeholder="ingredient">
-        <input type="text" name="prep_instruction" placeholder="Preparation Instructions">
-        <input type="text" name="photo" placeholder="photo">
-        <input type="submit" value="Create">
+<button type="button" id="recipeButton" class="btn btn-primary hide" data-toggle="modal" data-target="#sign">Add a Recipe</button>
+
+<div class="modal fade bd-example-modal-lg" id="sign">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Add a New Recipe</h2>
+          <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="recipe">
+        <input class="form-control" type="text" name="name" placeholder="Name">
+        <input class="form-control" type="integer" name="prep_time" placeholder="Preparation Time">
+        <input class="form-control" type="integer" name="cook_time" placeholder="Cook Time">
+        <input class="form-control" type="integer" name="serving_size" placeholder="Serving Size">
+        <input class="form-control" type="text" name="pot_mode" placeholder="Pot Mode">
+        <input class="form-control" type="text" name="pot_pressure" placeholder="Pot Pressure">
+        <input class="form-control" type="text" name="ingredient" placeholder="Ingredients">
+        <input class="form-control" type="text" name="prep_instruction" placeholder="Preparation Instructions">
+        <input class="form-control" type="text" name="photo" placeholder="Photo">
+        <input type="submit" class="btn btn-primary" value="Add">
       </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 </section>
+
+
+
     </body>
 </html>

@@ -7,9 +7,10 @@
     <p> Serving Size: {{recipe.serving_size}} </p>
     <p> Pot Mode: {{recipe.pot_mode}} </p>
     <p> Pot Pressure: {{recipe.pot_pressure}} </p>
+    <p> Ingredients: {{recipe.ingredient}} </p>
     <p> Prep Instructions: {{recipe.prep_instruction}} </p>
     <p> User: {{recipe.user.email}} </p>
-    <img class= "col-md-4 offset-md-2" src="{{recipe.photo}}">
+    <img class ="img-fluid" alt="Responsive image" src="{{recipe.photo}}">
 
   </section>
 
@@ -19,16 +20,16 @@
   </form>
 
   <form class="recipeUpdate" class="border">
-    <input type="integer" name="id" placeholder="Id">
-    <input type="integer" name="prep_time" placeholder="Preparation Time">
-    <input type="text" name="name" placeholder="name">
-    <input type="integer" name="cook_time" placeholder="Cook Time">
-    <input type="integer" name="serving_size" placeholder="Serving Size">
-    <input type="text" name="pot_mode" placeholder="Pot Mode">
-    <input type="text" name="pot_pressure" placeholder="Pot Pressure">
-    <input type="text" name="ingredient" placeholder="ingredient">
-    <input type="text" name="prep_instruction" placeholder="Preparation Instructions">
-    <input type="text" name="photo" placeholder="photo">
+    <input class="form-control" type="integer" name="id" placeholder="Id">
+    <input class="form-control" type="text" name="name" placeholder="Name">
+    <input class="form-control" type="integer" name="prep_time" placeholder="Preparation Time">
+    <input class="form-control" type="integer" name="cook_time" placeholder="Cook Time">
+    <input class="form-control" type="integer" name="serving_size" placeholder="Serving Size">
+    <input class="form-control" type="text" name="pot_mode" placeholder="Pot Mode">
+    <input class="form-control" type="text" name="pot_pressure" placeholder="Pot Pressure">
+    <input class="form-control" type="text" name="ingredient" placeholder="Ingredients">
+    <input class="form-control" type="text" name="prep_instruction" placeholder="Preparation Instructions">
+    <input class="form-control" type="text" name="photo" placeholder="Photo">
     <input type="submit" value="Update">
   </form>
 </div>

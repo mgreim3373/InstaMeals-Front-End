@@ -21,8 +21,11 @@ const signInSuccess = function (data) {
   $('#search').removeClass('hide')
   $('#sign-up').addClass('hide')
   $('#sign-in').addClass('hide')
-  $('#change-password').removeClass('hide')
+  $('#changePasswordButton').removeClass('hide')
   $('#sign-out').removeClass('hide')
+  $('#selectRecipeButton').removeClass('hide')
+  $('#showRecipes').removeClass('hide')
+  $('#recipeButton').removeClass('hide')
   console.log('success')
 }
 
@@ -44,9 +47,12 @@ const signOutSuccess = function () {
   $('#search').addClass('hide')
   $('#sign-up').removeClass('hide')
   $('#sign-in').removeClass('hide')
-  $('#change-password').addClass('hide')
+  $('#changePasswordButton').addClass('hide')
   $('#sign-out').addClass('hide')
   $('.handlebars').addClass('hide')
+  $('#selectRecipeButton').addClass('hide')
+  $('#showRecipes').addClass('hide')
+  $('#recipeButton').addClass('hide')
   console.log('success')
   store.user = null
 }

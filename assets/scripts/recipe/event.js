@@ -16,29 +16,11 @@ const onUpdateRecipe = function (event) {
     .catch(ui.updateRecipeFailure)
 }
 
-const onAddRecipe = function (event) {
-  event.preventDefault()
-  const data = getFormFields(this)
-  api.addRecipe(data)
-    .then(ui.addRecipeSuccess)
-    .catch(ui.addRecipeFailure)
-}
-
-const onDeleteRecipe = function (event) {
-  event.preventDefault()
-  const data = getFormFields(this)
-  console.log(data.id)
-  store.id = data.id
-  api.deleteRecipe(data)
-    .then(ui.deleteRecipeSuccess)
-    .catch(ui.deleteRecipeFailure)
-}
-
 const onSelectRecipe = function (event) {
   event.preventDefault()
   const data = getFormFields(this)
   store.id = data.id
-  api.selectRecipe(data)
+  api.selectRecipe()
     .then(selectRecipeSuccess)
     .catch(ui.selectRecipeFailure)
 }
@@ -54,6 +36,37 @@ const selectRecipeSuccess = function (data) {
   $('.handlebars').removeClass('hide')
 }
 
+const onAddRecipe = function (event) {
+  event.preventDefault()
+  const data = getFormFields(this)
+  api.addRecipe(data)
+    .then(addRecipeSuccess)
+    .catch(ui.addRecipeFailure)
+}
+
+const addRecipeSuccess = function (data) {
+  $('#recipe input[name="id"]').val('')
+  $('#recipe input[name="prep_time"]').val('')
+  $('#recipe input[name="name"]').val('')
+  $('#recipe input[name="cook_time"]').val('')
+  $('#recipe input[name="serving_size"]').val('')
+  $('#recipe input[name="pot_mode"]').val('')
+  $('#recipe input[name="pot_pressure"]').val('')
+  $('#recipe input[name="ingredient"]').val('')
+  $('#recipe input[name="prep_instruction"]').val('')
+  $('#recipe input[name="photo"]').val('')
+}
+
+const onDeleteRecipe = function (event) {
+  event.preventDefault()
+  const data = getFormFields(this)
+  console.log(data.id)
+  store.id = data.id
+  api.deleteRecipe(data)
+    .then(ui.deleteRecipeSuccess)
+    .catch(ui.deleteRecipeFailure)
+}
+
 const onShowRecipes = function (event) {
   event.preventDefault()
   const data = getFormFields(this)
@@ -63,7 +76,6 @@ const onShowRecipes = function (event) {
 }
 
 const showRecipeSuccess = function (data) {
-  console.log(data)
   const showRecipesHtml = RecipesTemplate({ recipes: data.recipes })
   $('.content').html(showRecipesHtml)
   $('.deleteRecipe').on('submit', onDeleteRecipe)
@@ -73,10 +85,10 @@ const showRecipeSuccess = function (data) {
 
 const addHandlers = () => {
   $('.recipeUpdate').on('submit', onUpdateRecipe)
-  $('#recipe').on('submit', onAddRecipe)
   $('.deleteRecipe').on('submit', onDeleteRecipe)
   $('#selectRecipe').on('submit', onSelectRecipe)
   $('#showRecipes').on('submit', onShowRecipes)
+  $('#recipe').on('submit', onAddRecipe)
 }
 
 module.exports = {
