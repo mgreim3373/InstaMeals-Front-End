@@ -3,7 +3,6 @@
 const config = require('../config')
 const store = require('../store')
 
-
 const addRecipe = function (data) {
   return $.ajax({
     url: config.apiUrl + '/recipes',

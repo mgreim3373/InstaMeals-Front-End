@@ -7,14 +7,6 @@ const store = require('../store')
 const api = require('./api')
 const ui = require('./ui')
 
-const onUpdateRecipe = function (event) {
-  event.preventDefault()
-  const data = getFormFields(this)
-  store.id = data.id
-  api.updateRecipe(data)
-    .then(ui.updateRecipeSuccess)
-    .catch(ui.updateRecipeFailure)
-}
 
 const onSelectRecipe = function (event) {
   event.preventDefault()
@@ -25,8 +17,44 @@ const onSelectRecipe = function (event) {
     .catch(ui.selectRecipeFailure)
 }
 
+const onUpdateRecipe = function (event) {
+  event.preventDefault()
+  const data = getFormFields(this)
+  store.id = data.id
+  api.updateRecipe(data)
+    .then(updateRecipeSuccess)
+    .catch(ui.updateRecipeFailure)
+}
+
+const updateRecipeSuccess = function (data) {
+  console.log('success')
+  $('#recipeUpdate input[name="id"]').val('')
+  $('#recipeUpdate input[name="prep_time"]').val('')
+  $('#recipeUpdate input[name="name"]').val('')
+  $('#recipeUpdate input[name="cook_time"]').val('')
+  $('#recipeUpdate input[name="serving_size"]').val('')
+  $('#recipeUpdate input[name="pot_mode"]').val('')
+  $('#recipeUpdate input[name="pot_pressure"]').val('')
+  $('#recipeUpdate input[name="ingredient"]').val('')
+  $('#recipeUpdate input[name="prep_instruction"]').val('')
+  $('#recipe input[name="photo"]').val('')
+    api.selectRecipe()
+    .then(selectRecipeSuccess)
+    .catch(ui.selectRecipeFailure)
+}
+
 const selectRecipeSuccess = function (data) {
-  console.log(data)
+  $('#selectRecipe input[name="id"]').val('')
+  const selectRecipeHtml = RecipeTemplate({ recipe: data.recipe })
+  $('.content').html(selectRecipeHtml)
+  $('.deleteRecipe').on('submit', onDeleteRecipe)
+  $('.recipeUpdate').on('submit', onUpdateRecipe)
+  $('.selectRecipe input[name="id"]').val('')
+  $('.handlebars').removeClass('hide')
+  $('#selectRecipeModal').modal('toggle')
+}
+
+const selectRecipeSuccessNoModal = function (data) {
   $('#selectRecipe input[name="id"]').val('')
   const selectRecipeHtml = RecipeTemplate({ recipe: data.recipe })
   $('.content').html(selectRecipeHtml)
@@ -55,6 +83,11 @@ const addRecipeSuccess = function (data) {
   $('#recipe input[name="ingredient"]').val('')
   $('#recipe input[name="prep_instruction"]').val('')
   $('#recipe input[name="photo"]').val('')
+  $('#sign').modal('toggle')
+  store.id = data.recipe.id
+  api.selectRecipe()
+  .then(selectRecipeSuccessNoModal)
+  .catch(ui.selectRecipeFailure)
 }
 
 const onDeleteRecipe = function (event) {
