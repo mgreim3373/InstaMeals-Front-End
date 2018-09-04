@@ -38,9 +38,6 @@ const updateRecipeSuccess = function (data) {
   $('#recipeUpdate input[name="ingredient"]').val('')
   $('#recipeUpdate input[name="prep_instruction"]').val('')
   $('#recipe input[name="photo"]').val('')
-    api.selectRecipe()
-    .then(selectRecipeSuccess)
-    .catch(ui.selectRecipeFailure)
 }
 
 const selectRecipeSuccess = function (data) {

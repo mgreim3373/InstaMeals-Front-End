@@ -64,7 +64,7 @@ const signOutFailure = function (error) {
 const changePasswordSuccess = function () {
   $('#change-password input[name="passwords[old]"]').val('')
   $('#change-password input[name="passwords[new]"]').val('')
-  console.log('success')
+  $('#passwordChange').modal('toggle')
 }
 
 const changePasswordFailure = function (error) {
