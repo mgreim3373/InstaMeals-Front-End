@@ -38,7 +38,6 @@ const signInSuccess = function (data) {
   $('#selectRecipeButton').removeClass('hide')
   $('#showRecipes').removeClass('hide')
   $('#recipeButton').removeClass('hide')
-  console.log('success')
 }
 
 const signInFailure = function (error) {
@@ -74,18 +73,27 @@ const signOutSuccess = function () {
   $('#selectRecipeButton').addClass('hide')
   $('#showRecipes').addClass('hide')
   $('#recipeButton').addClass('hide')
-  console.log('success')
   store.user = null
 }
 
 const signOutFailure = function (error) {
-  console.log('fail')
 }
 
 const changePasswordSuccess = function () {
   $('#change-password input[name="passwords[old]"]').val('')
   $('#change-password input[name="passwords[new]"]').val('')
-  $('#passwordChange').modal('toggle')
+  $('#change-password input[name="passwords[old]"]').val('Password Updated')
+  $('#change-password input[name="passwords[new]"]').val('Password Updated')
+  $('#change-password input[name="passwords[old]"]').css('color', 'green')
+  $('#change-password input[name="passwords[new]"]').css('color', 'green')
+  setTimeout(function() {
+    $('#change-password input[name="passwords[old]"]').val('')
+    $('#change-password input[name="passwords[old]"]').css('color', 'black')
+    $('#change-password input[name="passwords[new]"]').val('')
+    $('#change-password input[name="passwords[new]"]').css('color', 'black')
+    $('#passwordChange').modal('toggle')
+  }, 1000
+  )
 }
 
 const changePasswordFailure = function (error) {

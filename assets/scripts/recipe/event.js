@@ -50,7 +50,6 @@ const selectUpdateRecipeSuccess = function(data){
 }
 
 const selectRecipeSuccess = function (data) {
-  console.log(data)
   $('#selectRecipe input[name="id"]').val('')
   const selectRecipeHtml = RecipeTemplate({ recipe: data.recipe })
   $('.content').html(selectRecipeHtml)
@@ -103,7 +102,6 @@ const addRecipeSuccess = function (data) {
 const onDeleteRecipe = function (event) {
   event.preventDefault()
   const data = getFormFields(this)
-  console.log(data.id)
   store.id = data.id
   api.deleteRecipe(data)
     .then(ui.deleteRecipeSuccess)

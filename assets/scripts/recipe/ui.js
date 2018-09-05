@@ -12,7 +12,6 @@ const deleteRecipeSuccess = function () {
 }
 
 const addRecipeFailure = function (data) {
-  console.log('fail')
   $('#recipe input[name="prep_time"]').val('')
   $('#recipe input[name="name"]').val('')
   $('#recipe input[name="cook_time"]').val('')
@@ -69,7 +68,6 @@ setTimeout(function() {
 }
 
 const updateRecipeFailure = function (data) {
-  console.log('fail')
   $('.recipeUpdate input[name="id"]').val('Invalid Number')
   $('.recipeUpdate input[name="prep_time"]').val('Invalid Number')
   $('.recipeUpdate input[name="name"]').val('Invalid Input')
