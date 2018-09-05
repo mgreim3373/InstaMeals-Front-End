@@ -38,31 +38,28 @@ const updateRecipeSuccess = function (data) {
   $('.recipeUpdate input[name="photo"]').val('')
   $('#recipeUpdateModal').modal('hide')
   api.selectRecipe()
-    .then(selectUpdateRecipeSuccess)
+    .then(selectUpdatedRecipeSuccess)
 }
 
-const selectUpdateRecipeSuccess = function(data){
-  $('.updateRecipeDiv').removeClass('hide')
+const selectUpdatedRecipeSuccess = function (data) {
   $('#selectRecipe input[name="id"]').val('')
-  const selectRecipeUpdateHtml = RecipeTemplate({ recipe: data.recipe })
+  $('.updateRecipeDiv').removeClass('hide')
+  const selectUpdatedRecipeHtml = RecipeTemplate({ recipe: data.recipe })
   $('.content').addClass('hide')
-  $('.updateRecipeDiv').html(selectRecipeUpdateHtml)
+  $('.updateRecipeDiv').html(selectUpdatedRecipeHtml)
 }
 
 const selectRecipeSuccess = function (data) {
   $('#selectRecipe input[name="id"]').val('')
   const selectRecipeHtml = RecipeTemplate({ recipe: data.recipe })
   $('.content').html(selectRecipeHtml)
-  $('.deleteRecipe').on('submit', onDeleteRecipe)
-  $('.recipeUpdate').on('submit', onUpdateRecipe)
-  $('.selectRecipe input[name="id"]').val('')
   $('.handlebars').removeClass('hide')
   $('#selectRecipeModal').modal('toggle')
   $('.updateRecipeDiv').addClass('hide')
   $('.content').removeClass('hide')
 }
 
-const selectRecipeSuccessNoModal = function (data) {
+const selectAddedRecipeSuccess = function (data) {
   $('#selectRecipe input[name="id"]').val('')
   const selectRecipeHtml = RecipeTemplate({ recipe: data.recipe })
   $('.content').html(selectRecipeHtml)
@@ -92,11 +89,11 @@ const addRecipeSuccess = function (data) {
   $('#recipe input[name="ingredient"]').val('')
   $('#recipe input[name="prep_instruction"]').val('')
   $('#recipe input[name="photo"]').val('')
-  $('#sign').modal('toggle')
+  $('#updateRecipeModal').modal('toggle')
   store.id = data.recipe.id
   api.selectRecipe()
-  .then(selectRecipeSuccessNoModal)
-  .catch(ui.selectRecipeFailure)
+    .then(selectAddedRecipeSuccess)
+    .catch(ui.selectRecipeFailure)
 }
 
 const onDeleteRecipe = function (event) {

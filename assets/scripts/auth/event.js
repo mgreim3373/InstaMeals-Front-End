@@ -16,7 +16,7 @@ const onSignUp = function (event) {
 
 const onSignUpIn = function (event) {
   delete store.credentials.password_confirmation
-  let dataWithoutPC = store.credentials
+  const dataWithoutPC = store.credentials
   api.signIn(dataWithoutPC)
     .then(ui.signInSuccess)
     .catch(ui.signInFailure)
@@ -25,7 +25,6 @@ const onSignUpIn = function (event) {
 const onSignIn = function (event) {
   event.preventDefault()
   const data = getFormFields(this)
-
   api.signIn(data)
     .then(ui.signInSuccess)
     .catch(ui.signInFailure)

@@ -11,18 +11,18 @@ const addRecipe = function (data) {
       contentType: 'application/json',
       Authorization: 'Token token=' + store.user.token
     },
-      data: {
-        recipe: {
-          name: data.name,
-          prep_time: data.prep_time,
-          cook_time: data.cook_time,
-          serving_size: data.serving_size,
-          pot_mode: data.pot_mode,
-          pot_pressure: data.pot_pressure,
-          ingredient: data.ingredient,
-          prep_instruction: data.prep_instruction,
-          photo: data.photo
-        }
+    data: {
+      recipe: {
+        name: data.name,
+        prep_time: data.prep_time,
+        cook_time: data.cook_time,
+        serving_size: data.serving_size,
+        pot_mode: data.pot_mode,
+        pot_pressure: data.pot_pressure,
+        ingredient: data.ingredient,
+        prep_instruction: data.prep_instruction,
+        photo: data.photo
+      }
     }})
 }
 
@@ -34,18 +34,18 @@ const updateRecipe = function (data) {
       contentType: 'application/json',
       Authorization: 'Token token=' + store.user.token
     },
-      data: {
-        recipe: {
-          name: data.name,
-          prep_time: data.prep_time,
-          cook_time: data.cook_time,
-          serving_size: data.serving_size,
-          pot_mode: data.pot_mode,
-          pot_pressure: data.pot_pressure,
-          ingredient: data.ingredient,
-          prep_instruction: data.prep_instruction,
-          photo: data.photo
-        }
+    data: {
+      recipe: {
+        name: data.name,
+        prep_time: data.prep_time,
+        cook_time: data.cook_time,
+        serving_size: data.serving_size,
+        pot_mode: data.pot_mode,
+        pot_pressure: data.pot_pressure,
+        ingredient: data.ingredient,
+        prep_instruction: data.prep_instruction,
+        photo: data.photo
+      }
     }})
 }
 
