@@ -12,21 +12,18 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
+
 <div class = "container-fluid">
 <nav class="navbar fixed-top navbar-light"style="background-color: #e3f2fd">
 <a class="navbar-brand">InstaMeals</a>
-<form id = "search" class="form-inline hide">
-  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-</form>
 </nav>
 </div>
 <section id = page-container class= "col-md-6 offset-md-3">
 
 <form  id="sign-in" >
   <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" name="credentials[email]" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <label>Email address</label>
+    <input type="text" name="credentials[email]" class="form-control" placeholder="Enter email">
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
   <div class="form-group">
@@ -37,11 +34,10 @@
 </form>
 
 <form  id="sign-up" >
-  <div class="form-group">
-    <label>Email address</label>
-    <input type="email" name="credentials[email]" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
+  <label>Email address</label>
+  <input type="text" name="credentials[email]" class="form-control" placeholder="Enter email">
+  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+</div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
     <input type="password" name="credentials[password]" class="form-control" placeholder="Password">
@@ -101,8 +97,8 @@
 
             <div class="modal-body">
               <form id="change-password">
-                <input class="form-control" type="password" name="passwords[old]" placeholder="Old Password">
-                <input class="form-control" type="password" name="passwords[new]" placeholder="New Password">
+                <input class="form-control" type="text" name="passwords[old]" placeholder="Old Password">
+                <input class="form-control" type="text" name="passwords[new]" placeholder="New Password">
                 <input type="submit" value="Change Password">
             </form>
             </div>
@@ -135,7 +131,7 @@
       <form id="showRecipes" class="hide">
         <input type="submit" class="btn btn-primary"value="View All Recipes">
       </form>
-
+<div class ="updateRecipeDiv"></div>
       <div class = "content"></div>
 
 </section>

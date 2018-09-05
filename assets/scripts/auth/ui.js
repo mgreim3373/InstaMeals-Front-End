@@ -3,12 +3,24 @@
 const store = require('../store')
 
 const signUpFailure = function (error) {
+  $('#sign-up input[name="credentials[password]"]').val('Invalid Entry')
+  $('#sign-up input[name="credentials[email]"]').val('Invalid Entry')
+  $('#sign-up input[name="credentials[password_confirmation]"]').val('Invalid Entry')
+  $('#sign-up input[name="credentials[password]"]').css('color','red')
+  $('#sign-up input[name="credentials[email]"]').css('color','red')
+  $('#sign-up input[name="credentials[password_confirmation]"]').css('color','red')
+
+setTimeout(function() {
   $('#sign-up input[name="credentials[password]"]').val('')
   $('#sign-up input[name="credentials[email]"]').val('')
   $('#sign-up input[name="credentials[password_confirmation]"]').val('')
   $('#sign-in input[name="credentials[password]"]').val('')
   $('#sign-in input[name="credentials[email]"]').val('')
-  console.log('fail')
+  $('#sign-up input[name="credentials[password]"]').css('color','black')
+  $('#sign-up input[name="credentials[email]"]').css('color','black')
+  $('#sign-up input[name="credentials[password_confirmation]"]').css('color','black')
+}, 1000
+)
 }
 
 const signInSuccess = function (data) {
@@ -30,12 +42,21 @@ const signInSuccess = function (data) {
 }
 
 const signInFailure = function (error) {
+  $('#sign-in input[name="credentials[password]"]').val('Invalid Entry')
+  $('#sign-in input[name="credentials[email]"]').val('Invalid Entry')
+  $('#sign-in input[name="credentials[password]"]').css('color','red')
+  $('#sign-in input[name="credentials[email]"]').css('color','red')
+
+setTimeout(function() {
   $('#sign-up input[name="credentials[password]"]').val('')
   $('#sign-up input[name="credentials[email]"]').val('')
   $('#sign-up input[name="credentials[password_confirmation]"]').val('')
   $('#sign-in input[name="credentials[password]"]').val('')
   $('#sign-in input[name="credentials[email]"]').val('')
-  console.log('fail')
+  $('#sign-in input[name="credentials[password]"]').css('color','black')
+  $('#sign-in input[name="credentials[email]"]').css('color','black')
+}, 1000
+)
 }
 
 const signOutSuccess = function () {
@@ -70,8 +91,19 @@ const changePasswordSuccess = function () {
 const changePasswordFailure = function (error) {
   $('#change-password input[name="passwords[old]"]').val('')
   $('#change-password input[name="passwords[new]"]').val('')
-  console.log('fail')
+  $('#change-password input[name="passwords[old]"]').val('Invalid Entry')
+  $('#change-password input[name="passwords[new]"]').val('Invalid Entry')
+  $('#change-password input[name="passwords[old]"]').css('color', 'red')
+  $('#change-password input[name="passwords[new]"]').css('color', 'red')
+setTimeout(function() {
+  $('#change-password input[name="passwords[old]"]').val('')
+  $('#change-password input[name="passwords[old]"]').css('color', 'black')
+  $('#change-password input[name="passwords[new]"]').val('')
+  $('#change-password input[name="passwords[new]"]').css('color', 'black')
+}, 1000
+)
 }
+
 
 module.exports = {
   signUpFailure,
