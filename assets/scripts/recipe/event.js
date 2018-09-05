@@ -45,6 +45,7 @@ const selectUpdateRecipeSuccess = function(data){
   $('.updateRecipeDiv').removeClass('hide')
   $('#selectRecipe input[name="id"]').val('')
   const selectRecipeUpdateHtml = RecipeTemplate({ recipe: data.recipe })
+  $('.content').addClass('hide')
   $('.updateRecipeDiv').html(selectRecipeUpdateHtml)
 }
 
@@ -59,6 +60,7 @@ const selectRecipeSuccess = function (data) {
   $('.handlebars').removeClass('hide')
   $('#selectRecipeModal').modal('toggle')
   $('.updateRecipeDiv').addClass('hide')
+  $('.content').removeClass('hide')
 }
 
 const selectRecipeSuccessNoModal = function (data) {
@@ -123,6 +125,7 @@ const showRecipeSuccess = function (data) {
   $('.recipeUpdate').on('submit', onUpdateRecipe)
   $('.handlebars').removeClass('hide')
   $('.updateRecipeDiv').addClass('hide')
+  $('.content').removeClass('hide')
 }
 
 const addHandlers = () => {

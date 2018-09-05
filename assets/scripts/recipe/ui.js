@@ -7,6 +7,7 @@ const deleteRecipeSuccess = function () {
   setTimeout(function(){
     $('.deleteRecipe input[name="id"]').val('')
     $('.deleteRecipe input[name="id"]').css('color','black')
+
   }, 1000)
 }
 
