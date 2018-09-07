@@ -8,6 +8,7 @@ const api = require('./api')
 const ui = require('./ui')
 
 const onSelectRecipe = function (event) {
+  console.log('hi')
   event.preventDefault()
   const data = getFormFields(this)
   store.id = data.id
