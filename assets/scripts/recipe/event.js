@@ -8,67 +8,51 @@ const api = require('./api')
 const ui = require('./ui')
 
 const onSelectRecipe = function (event) {
-  console.log('hi')
   event.preventDefault()
   const data = getFormFields(this)
-  store.id = data.id
-  api.selectRecipe()
-    .then(selectRecipeSuccess)
-    .catch(ui.selectRecipeFailure)
+  if (data.id !== '') {
+    store.id = data.id
+    api.selectRecipe()
+      .then(selectRecipeSuccess)
+      .catch(ui.selectRecipeFailure)
+    }
+  else {
+    ui.selectRecipeFailure()
+  }
+}
+const selectRecipeSuccess = function (data) {
+  const selectRecipeHtml = RecipeTemplate({ recipe: data.recipe })
+  $('.content').html(selectRecipeHtml)
+  $('#selectRecipeModal').modal('toggle')
+  $('.updateRecipeDiv').addClass('hide')
+  $('.content').removeClass('hide')
+  $('.deleteRecipe').on('click', onDeleteRecipe)
+  $('#selectRecipe input[name="id"]').val('')
+  $('.updateRecipeButton').on('click', fillInputs)
 }
 
 const onUpdateRecipe = function (event) {
   event.preventDefault()
   const data = getFormFields(this)
-  store.id = data.id
   api.updateRecipe(data)
     .then(updateRecipeSuccess)
     .catch(ui.updateRecipeFailure)
 }
-
 const updateRecipeSuccess = function (data) {
-  $('.recipeUpdate input[name="id"]').val('')
-  $('.recipeUpdate input[name="prep_time"]').val('')
-  $('.recipeUpdate input[name="name"]').val('')
-  $('.recipeUpdate input[name="cook_time"]').val('')
-  $('.recipeUpdate input[name="serving_size"]').val('')
-  $('.recipeUpdate input[name="pot_mode"]').val('')
-  $('.recipeUpdate input[name="pot_pressure"]').val('')
-  $('.recipeUpdate input[name="ingredient"]').val('')
-  $('.recipeUpdate input[name="prep_instruction"]').val('')
-  $('.recipeUpdate input[name="photo"]').val('')
-  $('#recipeUpdateModal').modal('hide')
+  $('.recipeUpdate input').val('')
+  $('.recipeUpdate input[type="submit"]').val('Update')
+  $('#recipeUpdateModal').modal('toggle')
   api.selectRecipe()
     .then(selectUpdatedRecipeSuccess)
 }
 
 const selectUpdatedRecipeSuccess = function (data) {
-  $('#selectRecipe input[name="id"]').val('')
   $('.updateRecipeDiv').removeClass('hide')
   const selectUpdatedRecipeHtml = RecipeTemplate({ recipe: data.recipe })
   $('.content').addClass('hide')
   $('.updateRecipeDiv').html(selectUpdatedRecipeHtml)
-}
-
-const selectRecipeSuccess = function (data) {
-  $('#selectRecipe input[name="id"]').val('')
-  const selectRecipeHtml = RecipeTemplate({ recipe: data.recipe })
-  $('.content').html(selectRecipeHtml)
-  $('.handlebars').removeClass('hide')
-  $('#selectRecipeModal').modal('toggle')
-  $('.updateRecipeDiv').addClass('hide')
-  $('.content').removeClass('hide')
-}
-
-const selectAddedRecipeSuccess = function (data) {
-  $('#selectRecipe input[name="id"]').val('')
-  const selectRecipeHtml = RecipeTemplate({ recipe: data.recipe })
-  $('.content').html(selectRecipeHtml)
-  $('.deleteRecipe').on('submit', onDeleteRecipe)
-  $('.recipeUpdate').on('submit', onUpdateRecipe)
-  $('.selectRecipe input[name="id"]').val('')
-  $('.handlebars').removeClass('hide')
-  $('.updateRecipeDiv').addClass('hide')
+  $('.deleteRecipe').on('click', onDeleteRecipe)
+  $('.updateRecipeButton').on('click', fillInputs)
 }
 
 const onAddRecipe = function (event) {
@@ -80,16 +64,8 @@ const onAddRecipe = function (event) {
 }
 
 const addRecipeSuccess = function (data) {
-  $('#recipe input[name="id"]').val('')
-  $('#recipe input[name="prep_time"]').val('')
-  $('#recipe input[name="name"]').val('')
-  $('#recipe input[name="cook_time"]').val('')
-  $('#recipe input[name="serving_size"]').val('')
-  $('#recipe input[name="pot_mode"]').val('')
-  $('#recipe input[name="pot_pressure"]').val('')
-  $('#recipe input[name="ingredient"]').val('')
-  $('#recipe input[name="prep_instruction"]').val('')
-  $('#recipe input[name="photo"]').val('')
+  $('#recipe input').val('')
+  $('#recipe input[type="submit"]').val('Add')
   $('#updateRecipeModal').modal('toggle')
   store.id = data.recipe.id
   api.selectRecipe()
@@ -97,36 +73,86 @@ const addRecipeSuccess = function (data) {
     .catch(ui.selectRecipeFailure)
 }
 
+const selectAddedRecipeSuccess = function (data) {
+  const selectRecipeHtml = RecipeTemplate({ recipe: data.recipe })
+  $('.content').html(selectRecipeHtml)
+  $('.selectRecipe input[name="id"]').val('')
+  $('.updateRecipeDiv').addClass('hide')
+  $('.content').removeClass('hide')
+  $('.deleteRecipe').on('click', onDeleteRecipe)
+  $('.updateRecipeButton').on('click', fillInputs)
+}
+
 const onDeleteRecipe = function (event) {
   event.preventDefault()
-  const data = getFormFields(this)
-  store.id = data.id
-  api.deleteRecipe(data)
-    .then(ui.deleteRecipeSuccess)
+  const deleteId = $(event.target).closest('div').data('id')
+  store.id = deleteId
+  api.deleteRecipe()
+    .then(deleteRecipeSuccess)
     .catch(ui.deleteRecipeFailure)
+}
+
+const deleteRecipeSuccess = function () {
+  $('.messages').text('Deleted')
+  setTimeout(function () {
+    $('.messages').text('Deleted')
+    api.showRecipes()
+      .then(showRecipeSuccess)
+  }, 500)
 }
 
 const onShowRecipes = function (event) {
   event.preventDefault()
-  const data = getFormFields(this)
-  api.showRecipes(data)
+  api.showRecipes()
     .then(showRecipeSuccess)
     .catch(ui.selectRecipeFailure)
 }
 
+const fillInputs = function (event) {
+  let recipeId = $(event.target).closest('section').data('id')
+  store.id = recipeId
+  let recipeName = $(event.target).closest('section').data('name')
+  let recipePrepTime = $(event.target).closest('section').data('prep_time')
+  let recipeCookTime = $(event.target).closest('section').data('cook_time')
+  let recipeServingSize = $(event.target).closest('section').data('serving_size')
+  let recipePotmode = $(event.target).closest('section').data('pot_mode')
+  let recipePotPressure = $(event.target).closest('section').data('pot_pressure')
+  let recipeIngredients = $(event.target).closest('section').data('ingredient')
+  let recipePrep = $(event.target).closest('section').data('prep_instruction')
+  let recipePhoto = $(event.target).closest('section').data('photo')
+
+  $('.recipeUpdate input[name="id"]').val(recipeId)
+  $('.recipeUpdate input[name="name"]').val(recipeName)
+  $('.recipeUpdate input[name="prep_time"]').val(recipePrepTime)
+  $('.recipeUpdate input[name="cook_time"]').val(recipeCookTime)
+  $('.recipeUpdate input[name="serving_size"]').val(recipeServingSize)
+  $('.recipeUpdate input[name="pot_mode"]').val(recipePotmode)
+  $('.recipeUpdate input[name="pot_pressure"]').val(recipePotPressure)
+  $('.recipeUpdate input[name="ingredient"]').val(recipeIngredients)
+  $('.recipeUpdate input[name="prep_instruction"]').val(recipePrep)
+  $('.recipeUpdate input[name="photo"]').val(recipePhoto)
+}
+
 const showRecipeSuccess = function (data) {
+  if (data.recipes[0]) {
   const showRecipesHtml = RecipesTemplate({ recipes: data.recipes })
   $('.content').html(showRecipesHtml)
-  $('.deleteRecipe').on('submit', onDeleteRecipe)
   $('.recipeUpdate').on('submit', onUpdateRecipe)
-  $('.handlebars').removeClass('hide')
   $('.updateRecipeDiv').addClass('hide')
   $('.content').removeClass('hide')
+  $('.deleteRecipe').on('click', onDeleteRecipe)
+  $('.updateRecipeButton').on('click', fillInputs)
 }
+else {
+  $('.content').text('No recipes!')
+  setTimeout(function () {
+    $('.content').text('')
+  }, 1000)
+}}
 
 const addHandlers = () => {
   $('.recipeUpdate').on('submit', onUpdateRecipe)
-  $('.deleteRecipe').on('submit', onDeleteRecipe)
+  $('.deleteRecipe').on('click', onDeleteRecipe)
   $('#selectRecipe').on('submit', onSelectRecipe)
   $('#showRecipes').on('submit', onShowRecipes)
   $('#recipe').on('submit', onAddRecipe)

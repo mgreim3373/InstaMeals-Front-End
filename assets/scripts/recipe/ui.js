@@ -1,14 +1,5 @@
 'use strict'
 
-const deleteRecipeSuccess = function () {
-  $('.deleteRecipe input[name="id"]').val('Delete Success')
-  $('.deleteRecipe input[name="id"]').css('color', 'green')
-  setTimeout(function () {
-    $('.deleteRecipe input[name="id"]').val('')
-    $('.deleteRecipe input[name="id"]').css('color', 'black')
-  }, 1000)
-}
-
 const addRecipeFailure = function (data) {
   $('#recipe input[name="prep_time"]').val('Invalid Number')
   $('#recipe input[name="name"]').val('Invalid Input')
@@ -104,25 +95,20 @@ const updateRecipeFailure = function (data) {
 }
 
 const selectRecipeFailure = function (data) {
+  setTimeout(function () {
   $('#selectRecipe input[name="id"]').val('Invalid Entry')
   $('#selectRecipe input[name="id"]').css('color', 'red')
   setTimeout(function () {
     $('#selectRecipe input[name="id"]').val('')
     $('#selectRecipe input[name="id"]').css('color', 'black')
-  }, 1000)
+  }, 500)
+}, 107)
 }
 
 const deleteRecipeFailure = function (data) {
-  $('.deleteRecipe input[name="id"]').val('Invalid Number')
-  $('.deleteRecipe input[name="id"]').css('color', 'red')
-  setTimeout(function () {
-    $('.deleteRecipe input[name="id"]').val('')
-    $('.deleteRecipe input[name="id"]').css('color', 'black')
-  }, 1000)
 }
 
 module.exports = {
-  deleteRecipeSuccess,
   updateRecipeFailure,
   deleteRecipeFailure,
   selectRecipeFailure,
