@@ -23,7 +23,9 @@ const onSelectRecipe = function (event) {
 const selectRecipeSuccess = function (data) {
   const selectRecipeHtml = RecipeTemplate({ recipe: data.recipe })
   $('.content').html(selectRecipeHtml)
-  $('#selectRecipeModal').modal('toggle')
+  $('#selectRecipeModal').modal('hide')
+  $('body').removeClass('modal-open')
+  $('.modal-backdrop').remove()
   $('.updateRecipeDiv').addClass('hide')
   $('.content').removeClass('hide')
   $('.deleteRecipe').on('click', onDeleteRecipe)
@@ -42,7 +44,9 @@ const onUpdateRecipe = function (event) {
 const updateRecipeSuccess = function (data) {
   $('.recipeUpdate input').val('')
   $('.recipeUpdate input[type="submit"]').val('Update')
-  $('#recipeUpdateModal').modal('toggle')
+  $('#recipeUpdateModal').modal('hide')
+  $('body').removeClass('modal-open')
+  $('.modal-backdrop').remove()
   api.selectRecipe()
     .then(selectUpdatedRecipeSuccess)
 }
@@ -55,6 +59,8 @@ const selectUpdatedRecipeSuccess = function (data) {
   $('.deleteRecipe').on('click', onDeleteRecipe)
   $('.updateRecipeButton').on('click', fillInputs)
   $('.showRecipes').on('click', onShowRecipes)
+  $('body').removeClass('modal-open')
+  $('.modal-backdrop').remove()
 }
 
 const onAddRecipe = function (event) {
@@ -68,7 +74,9 @@ const onAddRecipe = function (event) {
 const addRecipeSuccess = function (data) {
   $('#recipe input').val('')
   $('#recipe input[type="submit"]').val('Add')
-  $('#addRecipeModal').modal('toggle')
+  $('#addRecipeModal').modal('hide')
+  $('body').removeClass('modal-open')
+  $('.modal-backdrop').remove()
   store.id = data.recipe.id
   api.selectRecipe()
     .then(selectAddedRecipeSuccess)
@@ -84,6 +92,8 @@ const selectAddedRecipeSuccess = function (data) {
   $('.deleteRecipe').on('click', onDeleteRecipe)
   $('.updateRecipeButton').on('click', fillInputs)
   $('.showRecipes').on('click', onShowRecipes)
+  $('body').removeClass('modal-open')
+  $('.modal-backdrop').remove()
 }
 
 const onDeleteRecipe = function (event) {
@@ -152,6 +162,7 @@ const showRecipeSuccess = function (data) {
   $('.deleteRecipe').on('click', onDeleteRecipe)
   $('.updateRecipeButton').on('click', fillInputs)
 }
+
 else {
   $('.content').text('No recipes!')
   setTimeout(function () {

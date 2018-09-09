@@ -97,7 +97,9 @@ const changePasswordSuccess = function () {
     $('#change-password input[name="passwords[old]"]').css('color', 'black')
     $('#change-password input[name="passwords[new]"]').val('')
     $('#change-password input[name="passwords[new]"]').css('color', 'black')
-    $('#passwordChange').modal('toggle')
+    $('#passwordChange').modal('hide')
+    $('body').removeClass('modal-open')
+    $('.modal-backdrop').remove()
   }, 1000
   )
 }
