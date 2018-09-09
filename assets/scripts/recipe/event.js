@@ -29,6 +29,7 @@ const selectRecipeSuccess = function (data) {
   $('.deleteRecipe').on('click', onDeleteRecipe)
   $('#selectRecipe input[name="id"]').val('')
   $('.updateRecipeButton').on('click', fillInputs)
+  $('.showRecipes').on('click', onShowRecipes)
 }
 
 const onUpdateRecipe = function (event) {
@@ -53,6 +54,7 @@ const selectUpdatedRecipeSuccess = function (data) {
   $('.updateRecipeDiv').html(selectUpdatedRecipeHtml)
   $('.deleteRecipe').on('click', onDeleteRecipe)
   $('.updateRecipeButton').on('click', fillInputs)
+  $('.showRecipes').on('click', onShowRecipes)
 }
 
 const onAddRecipe = function (event) {
@@ -66,7 +68,7 @@ const onAddRecipe = function (event) {
 const addRecipeSuccess = function (data) {
   $('#recipe input').val('')
   $('#recipe input[type="submit"]').val('Add')
-  $('#updateRecipeModal').modal('toggle')
+  $('#addRecipeModal').modal('toggle')
   store.id = data.recipe.id
   api.selectRecipe()
     .then(selectAddedRecipeSuccess)
@@ -81,6 +83,7 @@ const selectAddedRecipeSuccess = function (data) {
   $('.content').removeClass('hide')
   $('.deleteRecipe').on('click', onDeleteRecipe)
   $('.updateRecipeButton').on('click', fillInputs)
+  $('.showRecipes').on('click', onShowRecipes)
 }
 
 const onDeleteRecipe = function (event) {
@@ -103,6 +106,12 @@ const deleteRecipeSuccess = function () {
 
 const onShowRecipes = function (event) {
   event.preventDefault()
+  api.showRecipes()
+    .then(showRecipeSuccess)
+    .catch(ui.selectRecipeFailure)
+}
+
+const onShowRecipesSignin = function (event) {
   api.showRecipes()
     .then(showRecipeSuccess)
     .catch(ui.selectRecipeFailure)
@@ -154,10 +163,11 @@ const addHandlers = () => {
   $('.recipeUpdate').on('submit', onUpdateRecipe)
   $('.deleteRecipe').on('click', onDeleteRecipe)
   $('#selectRecipe').on('submit', onSelectRecipe)
-  $('#showRecipes').on('submit', onShowRecipes)
+  $('.showRecipes').on('submit', onShowRecipes)
   $('#recipe').on('submit', onAddRecipe)
 }
 
 module.exports = {
-  addHandlers
+  addHandlers,
+  onShowRecipesSignin
 }

@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('../store')
+const recipeEvent = require('../recipe/event')
 
 const signUpFailure = function () {
   $('#sign-up input[name="credentials[password]"]').val('Invalid Entry')
@@ -34,8 +35,12 @@ const signInSuccess = function (data) {
   $('#changePasswordButton').removeClass('hide')
   $('#sign-out').removeClass('hide')
   $('#selectRecipeButton').removeClass('hide')
-  $('#showRecipes').removeClass('hide')
+  $('.showRecipes').removeClass('hide')
   $('#updateRecipeButton').removeClass('hide')
+  recipeEvent.onShowRecipesSignin()
+  $('#dropDownButton').removeClass('hide')
+  $('#selectRecipe').removeClass('hide')
+  $('#navbarSupportedContent').removeClass('hide')
 }
 
 const signInFailure = function () {
@@ -69,8 +74,11 @@ const signOutSuccess = function () {
   $('.content').addClass('hide')
   $('.updateRecipeDiv').addClass('hide')
   $('#selectRecipeButton').addClass('hide')
-  $('#showRecipes').addClass('hide')
+  $('.showRecipes').addClass('hide')
   $('#updateRecipeButton').addClass('hide')
+  $('#dropDownButton').addClass('hide')
+  $('#selectRecipe').addClass('hide')
+  $('#navbarSupportedContent').addClass('hide')
   store.user = null
 }
 

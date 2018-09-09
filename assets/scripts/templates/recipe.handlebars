@@ -12,17 +12,19 @@
     <p> User: {{recipe.user.email}} </p>
     <img class ="img-fluid" alt="Responsive image" src="{{recipe.photo}}">
 
-  {{#if recipe.editable}}
 
 <div data-id = {{recipe.id}}>
   <div class="messages"></div>
-  <button type="button" class="deleteRecipe">Delete Recipe</button>
-  <button type="button" class="btn btn-primary updateRecipeButton" data-toggle="modal" data-target="#recipeUpdateModal">Update Recipe</button>
+  {{#if recipe.editable}}
+  <button type="button" class="btn btn-outline-secondary updateRecipeButton" data-toggle="modal" data-target="#recipeUpdateModal">Update Recipe</button>
+  <button type="button" class="btn btn-outline-danger deleteRecipe">Delete Recipe</button>
+  <button type="button" class="btn btn-outline-secondary showRecipes">Back</button>
 </div>
-
 {{else}}
 
-<div></div>
+<div>
+<button type="button" class="btn btn-outline-secondary showRecipes">Back</button>
+</div>
 
 {{/if}}
 </section>

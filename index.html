@@ -13,9 +13,35 @@
     </head>
     <body>
 
+
       <div class = "container-fluid">
         <nav class="navbar fixed-top navbar-light"style="background-color: #e3f2fd">
           <a class="navbar-brand">InstaMeals</a>
+          <button id="dropDownButton" class="navbar-toggler ml-auto hide" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse hide" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+              <li class="nav-item">
+                <a class="nav-link" id="addRecipeButton" data-toggle="modal" data-target="#addRecipeModal">Add Recipe</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" id="changePasswordButton" data-toggle="modal" data-target="#passwordChange">Change Password</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" id="sign-out">Sign Out</a>
+              </li>
+
+            </ul>
+          </div>
+          <form class="form-inline my-2 my-lg-0 hide" id="selectRecipe">
+            <input class="form-control mr-sm-2" name="id" type="search" placeholder="Recipe Id" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
         </nav>
       </div>
 
@@ -50,9 +76,7 @@
           <button type="submit" class="btn btn-primary">Signup</button>
         </form>
 
-        <button type="button" id="updateRecipeButton" class="btn btn-primary hide col-md-6 offset-md-3" data-toggle="modal" data-target="#updateRecipeModal">Add a Recipe</button>
-
-        <div class="modal fade bd-example-modal-lg" id="updateRecipeModal">
+        <div class="modal fade bd-example-modal-lg" id="addRecipeModal">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -79,12 +103,6 @@
             </div>
           </div>
 
-      <form id="sign-out" class="hide">
-        <input type="submit" class="btn btn-primary col-md-6 offset-md-3" value="Sign Out">
-      </form>
-
-      <button type="button" id="changePasswordButton" class="btn btn-primary hide col-md-6 offset-md-3" data-toggle="modal" data-target="#passwordChange">Change Password</button>
-
       <div class="modal fade bd-example-modal-lg" id="passwordChange">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -104,32 +122,6 @@
           </div>
         </div>
       </div>
-
-
-      <button type="button" id="selectRecipeButton" class="btn btn-primary hide col-md-6 offset-md-3" data-toggle="modal" data-target="#selectRecipeModal">Select Recipe</button>
-
-      <div class="modal fade bd-example-modal-lg" id="selectRecipeModal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h2 class="modal-title">Select Recipe</h2>
-                <button type="button" class="close" data-dismiss="modal">
-                <span>&times;</span></button>
-            </div>
-
-            <div class="modal-body">
-              <form id="selectRecipe">
-                <input class="form-control" type="integer" name="id" placeholder="Recipe Id (Input Number)">
-                <input type="submit" value="Select Recipe">
-            </form>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <form id="showRecipes" class="hide">
-        <input type="submit" class="btn btn-primary col-md-6 offset-md-3" value="View All Recipes">
-      </form>
       <div class ="updateRecipeDiv"></div>
 
       <div class = "content"></div>
