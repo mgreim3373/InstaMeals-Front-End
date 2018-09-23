@@ -45,11 +45,23 @@ const onChangePassword = function (event) {
     .catch(ui.changePasswordFailure)
 }
 
+const toSignIn = function (event) {
+  $('#signInCard').removeClass('hide')
+  $('#signUpCard').addClass('hide')
+}
+
+const toSignUp = function (event) {
+  $('#signInCard').addClass('hide')
+  $('#signUpCard').removeClass('hide')
+}
+
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
   $('#sign-out').on('click', onSignOut)
   $('#change-password').on('submit', onChangePassword)
+  $('#to-login').on('click', toSignIn)
+  $('#to-signup').on('click', toSignUp)
 }
 
 module.exports = {

@@ -41,6 +41,7 @@ const signInSuccess = function (data) {
   $('#dropDownButton').removeClass('hide')
   $('#selectRecipe').removeClass('hide')
   $('#navbarSupportedContent').removeClass('hide')
+  $('.auth-container').addClass('hide')
 }
 
 const signInFailure = function () {
@@ -79,6 +80,7 @@ const signOutSuccess = function () {
   $('#dropDownButton').addClass('hide')
   $('#selectRecipe').addClass('hide')
   $('#navbarSupportedContent').addClass('hide')
+  $('.auth-container').removeClass('hide')
   store.user = null
 }
 
