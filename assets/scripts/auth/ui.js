@@ -4,83 +4,25 @@ const store = require('../store')
 const recipeEvent = require('../recipe/event')
 
 const signUpFailure = function () {
-  $('#sign-up input[name="credentials[password]"]').val('Invalid Entry')
-  $('#sign-up input[name="credentials[email]"]').val('Invalid Entry')
-  $('#sign-up input[name="credentials[password_confirmation]"]').val('Invalid Entry')
-  $('#sign-up input[name="credentials[password]"]').css('color', 'red')
-  $('#sign-up input[name="credentials[email]"]').css('color', 'red')
-  $('#sign-up input[name="credentials[password_confirmation]"]').css('color', 'red')
-  setTimeout(function () {
-    $('#sign-up input[name="credentials[password]"]').val('')
-    $('#sign-up input[name="credentials[email]"]').val('')
-    $('#sign-up input[name="credentials[password_confirmation]"]').val('')
-    $('#sign-in input[name="credentials[password]"]').val('')
-    $('#sign-in input[name="credentials[email]"]').val('')
-    $('#sign-up input[name="credentials[password]"]').css('color', 'black')
-    $('#sign-up input[name="credentials[email]"]').css('color', 'black')
-    $('#sign-up input[name="credentials[password_confirmation]"]').css('color', 'black')
-  }, 1000
-  )
+  errorMessageClearForm()
 }
 
 const signInSuccess = function (data) {
   store.user = data.user
-  $('#sign-up input[name="credentials[password]"]').val('')
-  $('#sign-up input[name="credentials[email]"]').val('')
-  $('#sign-up input[name="credentials[password_confirmation]"]').val('')
-  $('#sign-in input[name="credentials[password]"]').val('')
-  $('#sign-in input[name="credentials[email]"]').val('')
-  $('#sign-up').addClass('hide')
-  $('#sign-in').addClass('hide')
-  $('#changePasswordButton').removeClass('hide')
-  $('#sign-out').removeClass('hide')
-  $('#selectRecipeButton').removeClass('hide')
-  $('.showRecipes').removeClass('hide')
-  $('#updateRecipeButton').removeClass('hide')
+  $('#sign-up input').val('')
+  $('#sign-in input').val('')
   recipeEvent.onShowRecipesSignin()
-  $('#dropDownButton').removeClass('hide')
-  $('#selectRecipe').removeClass('hide')
-  $('#navbarSupportedContent').removeClass('hide')
-  $('.auth-container').addClass('hide')
+  hideLoginPage()
 }
 
 const signInFailure = function () {
-  $('#sign-in input[name="credentials[password]"]').val('Invalid Entry')
-  $('#sign-in input[name="credentials[email]"]').val('Invalid Entry')
-  $('#sign-in input[name="credentials[password]"]').css('color', 'red')
-  $('#sign-in input[name="credentials[email]"]').css('color', 'red')
-  setTimeout(function () {
-    $('#sign-up input[name="credentials[password]"]').val('')
-    $('#sign-up input[name="credentials[email]"]').val('')
-    $('#sign-up input[name="credentials[password_confirmation]"]').val('')
-    $('#sign-in input[name="credentials[password]"]').val('')
-    $('#sign-in input[name="credentials[email]"]').val('')
-    $('#sign-in input[name="credentials[password]"]').css('color', 'black')
-    $('#sign-in input[name="credentials[email]"]').css('color', 'black')
-  }, 1000
-  )
+  errorMessageClearForm()
 }
 
 const signOutSuccess = function () {
-  $('#sign-in input[name="credentials[password]"]').val('')
-  $('#sign-in input[name="credentials[email]"]').val('')
-  $('#sign-up input[name="credentials[password]"]').val('')
-  $('#sign-up input[name="credentials[email]"]').val('')
-  $('#sign-up input[name="credentials[password_confirmation]"]').val('')
-  $('#search').addClass('hide')
-  $('#sign-up').removeClass('hide')
-  $('#sign-in').removeClass('hide')
-  $('#changePasswordButton').addClass('hide')
-  $('#sign-out').addClass('hide')
-  $('.content').addClass('hide')
-  $('.updateRecipeDiv').addClass('hide')
-  $('#selectRecipeButton').addClass('hide')
-  $('.showRecipes').addClass('hide')
-  $('#updateRecipeButton').addClass('hide')
-  $('#dropDownButton').addClass('hide')
-  $('#selectRecipe').addClass('hide')
-  $('#navbarSupportedContent').addClass('hide')
   $('.auth-container').removeClass('hide')
+  $('#dropDownButton').addClass('hide')
+  $('.content').addClass('hide')
   store.user = null
 }
 
@@ -118,6 +60,26 @@ const changePasswordFailure = function () {
     $('#change-password input[name="passwords[old]"]').css('color', 'black')
     $('#change-password input[name="passwords[new]"]').val('')
     $('#change-password input[name="passwords[new]"]').css('color', 'black')
+  }, 1000
+  )
+}
+
+const hideLoginPage = function () {
+  $('.auth-container').addClass('hide')
+  $('#dropDownButton').removeClass('hide')
+  $('.content').removeClass('hide')
+}
+
+const errorMessageClearForm = function () {
+  $('#sign-in input').val('Invalid Entry')
+  $('#sign-in input').css('color', 'red')
+  $('#sign-up input').val('Invalid Entry')
+  $('#sign-up input').css('color', 'red')
+  setTimeout(function () {
+    $('#sign-up input').val('')
+    $('#sign-up input').css('color', 'black')
+    $('#sign-in input').val('')
+    $('#sign-in input').css('color', 'black')
   }, 1000
   )
 }
