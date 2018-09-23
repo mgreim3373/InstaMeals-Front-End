@@ -15,7 +15,8 @@ const onSelectRecipe = function (event) {
     api.selectRecipe()
       .then(selectRecipeSuccess)
       .catch(ui.selectRecipeFailure)
-  } else {
+    }
+  else {
     ui.selectRecipeFailure()
   }
 }

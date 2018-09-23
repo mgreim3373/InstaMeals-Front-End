@@ -20,9 +20,7 @@ const signInFailure = function () {
 }
 
 const signOutSuccess = function () {
-  $('.auth-container').removeClass('hide')
-  $('#dropDownButton').addClass('hide')
-  $('.content').addClass('hide')
+  showLoginPage()
   store.user = null
 }
 
@@ -30,36 +28,27 @@ const signOutFailure = function () {
 }
 
 const changePasswordSuccess = function () {
-  $('#change-password input[name="passwords[old]"]').val('')
-  $('#change-password input[name="passwords[new]"]').val('')
-  $('#change-password input[name="passwords[old]"]').val('Password Updated')
-  $('#change-password input[name="passwords[new]"]').val('Password Updated')
-  $('#change-password input[name="passwords[old]"]').css('color', 'green')
-  $('#change-password input[name="passwords[new]"]').css('color', 'green')
+  $('#change-password input').val('Change Password Success')
+  $('#change-password input').css('color', 'green')
+  $('#change-password input[type=submit]').val('Change Password')
   setTimeout(function () {
-    $('#change-password input[name="passwords[old]"]').val('')
-    $('#change-password input[name="passwords[old]"]').css('color', 'black')
-    $('#change-password input[name="passwords[new]"]').val('')
-    $('#change-password input[name="passwords[new]"]').css('color', 'black')
+    $('#change-password input').css('color', 'black')
     $('#passwordChange').modal('hide')
-    $('body').removeClass('modal-open')
-    $('.modal-backdrop').remove()
+    $('#change-password input').val('')
+    $('#change-password input[type=submit]').val('Change Password')
+    closeModalBackground()
   }, 1000
   )
 }
 
 const changePasswordFailure = function () {
-  $('#change-password input[name="passwords[old]"]').val('')
-  $('#change-password input[name="passwords[new]"]').val('')
-  $('#change-password input[name="passwords[old]"]').val('Invalid Entry')
-  $('#change-password input[name="passwords[new]"]').val('Invalid Entry')
-  $('#change-password input[name="passwords[old]"]').css('color', 'red')
-  $('#change-password input[name="passwords[new]"]').css('color', 'red')
+  $('#change-password input').val('Input Error')
+  $('#change-password input').css('color', 'red')
+  $('#change-password input[type=submit]').val('Change Password')
   setTimeout(function () {
-    $('#change-password input[name="passwords[old]"]').val('')
-    $('#change-password input[name="passwords[old]"]').css('color', 'black')
-    $('#change-password input[name="passwords[new]"]').val('')
-    $('#change-password input[name="passwords[new]"]').css('color', 'black')
+    $('#change-password input').val('')
+    $('#change-password input[type=submit]').val('Change Password')
+    $('#change-password input').css('color', 'black')
   }, 1000
   )
 }
@@ -68,6 +57,14 @@ const hideLoginPage = function () {
   $('.auth-container').addClass('hide')
   $('#dropDownButton').removeClass('hide')
   $('.content').removeClass('hide')
+  $('#selectRecipe').removeClass('hide')
+}
+
+const showLoginPage = function () {
+  $('.auth-container').removeClass('hide')
+  $('#dropDownButton').addClass('hide')
+  $('.content').addClass('hide')
+  $('#selectRecipe').addClass('hide')
 }
 
 const errorMessageClearForm = function () {
@@ -84,6 +81,11 @@ const errorMessageClearForm = function () {
   )
 }
 
+const closeModalBackground = function () {
+  $('body').removeClass('modal-open')
+  $('.modal-backdrop').remove()
+}
+
 module.exports = {
   signUpFailure,
   signInSuccess,
@@ -91,5 +93,6 @@ module.exports = {
   signOutSuccess,
   signOutFailure,
   changePasswordSuccess,
-  changePasswordFailure
+  changePasswordFailure,
+  closeModalBackground
 }
