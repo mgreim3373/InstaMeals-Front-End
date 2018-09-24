@@ -3,6 +3,9 @@
 const RecipesTemplate = require('../templates/recipes.handlebars')
 const RecipeTemplate = require('../templates/recipe.handlebars')
 const authUI = require('../auth/ui')
+const store = require('../store')
+const api = require('./api')
+
 
 const addRecipeFailure = function (data) {
   $('#recipe input[name="prep_time"]').val('Invalid Number')
@@ -124,8 +127,7 @@ const updateRecipeSuccess = function (data) {
 // }
 
 const selectRecipeSuccess = function (data) {
-  const selectRecipeHtml = RecipeTemplate({ recipe: data.recipe })
-  $('.content').html(selectRecipeHtml)
+  addHandlebarContent(data)
   $('.content').removeClass('hide')
   $('#selectRecipe input[name="id"]').val('')
 }
@@ -143,11 +145,31 @@ const closeModal = function () {
   $('.modal-backdrop').remove()
 }
 
+const addHandlebarContent = function (data) {
+  const selectRecipeHtml = RecipeTemplate({ recipe: data.recipe })
+  $('.content').html(selectRecipeHtml)
+}
+
+const addRecipeSuccess = function (data) {
+  $('#recipe input').val('')
+  hideModal()
+  store.id = data.recipe.id
+  api.selectRecipe()
+    .then(selectRecipeSuccess)
+}
+
+const hideModal = function () {
+  $('#addRecipeModal').modal('hide')
+  $('body').removeClass('modal-open')
+  $('.modal-backdrop').remove()
+}
+
 module.exports = {
   updateRecipeFailure,
   deleteRecipeFailure,
   selectRecipeFailure,
   addRecipeFailure,
   selectRecipeSuccess,
-  updateRecipeSuccess
+  updateRecipeSuccess,
+  addRecipeSuccess
 }

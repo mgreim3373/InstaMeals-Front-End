@@ -42,33 +42,8 @@ const onAddRecipe = function (event) {
   event.preventDefault()
   const data = getFormFields(this)
   api.addRecipe(data)
-    .then(addRecipeSuccess)
+    .then(ui.addRecipeSuccess)
     .catch(ui.addRecipeFailure)
-}
-
-const addRecipeSuccess = function (data) {
-  $('#recipe input').val('')
-  $('#recipe input[type="submit"]').val('Add')
-  $('#addRecipeModal').modal('hide')
-  $('body').removeClass('modal-open')
-  $('.modal-backdrop').remove()
-  store.id = data.recipe.id
-  api.selectRecipe()
-    .then(selectAddedRecipeSuccess)
-    .catch(ui.selectRecipeFailure)
-}
-
-const selectAddedRecipeSuccess = function (data) {
-  const selectRecipeHtml = RecipeTemplate({ recipe: data.recipe })
-  $('.content').html(selectRecipeHtml)
-  $('.selectRecipe input[name="id"]').val('')
-  $('.updateRecipeDiv').addClass('hide')
-  $('.content').removeClass('hide')
-  $('.deleteRecipe').on('click', onDeleteRecipe)
-  $('.updateRecipeButton').on('click', fillInputs)
-  $('.showRecipes').on('click', onShowRecipes)
-  $('body').removeClass('modal-open')
-  $('.modal-backdrop').remove()
 }
 
 const onDeleteRecipe = function (event) {
