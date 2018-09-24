@@ -1,7 +1,5 @@
 'use strict'
 
-const RecipesTemplate = require('../templates/recipes.handlebars')
-const RecipeTemplate = require('../templates/recipe.handlebars')
 const getFormFields = require(`../../../lib/get-form-fields`)
 const store = require('../store')
 const api = require('./api')
@@ -16,6 +14,7 @@ const addHandlebarClickFunctions = function () {
 const onSelectRecipe = function (event) {
   event.preventDefault()
   const data = getFormFields(this)
+  $('#selectRecipe input[name="id"]').val('')
   if (data.id !== '') {
     store.id = data.id
     api.selectRecipe()
@@ -43,7 +42,10 @@ const onAddRecipe = function (event) {
   const data = getFormFields(this)
   api.addRecipe(data)
     .then(ui.addRecipeSuccess)
-    .catch(ui.addRecipeFailure)
+    .then(api.selectRecipe)
+    .then(ui.selectRecipeSuccess)
+    .then(addHandlebarClickFunctions)
+    .catch(ui.updateRecipeFailure)
 }
 
 const onDeleteRecipe = function (event) {
@@ -51,29 +53,23 @@ const onDeleteRecipe = function (event) {
   const deleteId = $(event.target).closest('div').data('id')
   store.id = deleteId
   api.deleteRecipe()
-    .then(deleteRecipeSuccess)
+    .then(ui.deleteRecipeSuccess)
+    .then(api.showRecipes)
+    .then(ui.showRecipeSuccess)
+    .then(addHandlebarClickFunctions)
     .catch(ui.deleteRecipeFailure)
-}
-
-const deleteRecipeSuccess = function () {
-  $('.messages').text('Deleted')
-  setTimeout(function () {
-    $('.messages').text('Deleted')
-    api.showRecipes()
-      .then(showRecipeSuccess)
-  }, 500)
 }
 
 const onShowRecipes = function (event) {
   event.preventDefault()
   api.showRecipes()
-    .then(showRecipeSuccess)
+    .then(ui.showRecipeSuccess)
     .catch(ui.selectRecipeFailure)
 }
 
 const onShowRecipesSignin = function (event) {
   api.showRecipes()
-    .then(showRecipeSuccess)
+    .then(ui.showRecipeSuccess)
     .catch(ui.selectRecipeFailure)
 }
 
@@ -101,24 +97,6 @@ const fillInputs = function (event) {
   $('.recipeUpdate input[name="prep_instruction"]').val(recipePrep)
   $('.recipeUpdate input[name="photo"]').val(recipePhoto)
 }
-
-const showRecipeSuccess = function (data) {
-  if (data.recipes[0]) {
-  const showRecipesHtml = RecipesTemplate({ recipes: data.recipes })
-  $('.content').html(showRecipesHtml)
-  $('.recipeUpdate').on('submit', onUpdateRecipe)
-  $('.updateRecipeDiv').addClass('hide')
-  $('.content').removeClass('hide')
-  $('.deleteRecipe').on('click', onDeleteRecipe)
-  $('.updateRecipeButton').on('click', fillInputs)
-}
-
-else {
-  $('.content').text('No recipes!')
-  setTimeout(function () {
-    $('.content').text('')
-  }, 1000)
-}}
 
 const addHandlers = () => {
   $('.recipeUpdate').on('submit', onUpdateRecipe)

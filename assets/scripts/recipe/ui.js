@@ -2,7 +2,6 @@
 
 const RecipesTemplate = require('../templates/recipes.handlebars')
 const RecipeTemplate = require('../templates/recipe.handlebars')
-const authUI = require('../auth/ui')
 const store = require('../store')
 const api = require('./api')
 
@@ -129,7 +128,6 @@ const updateRecipeSuccess = function (data) {
 const selectRecipeSuccess = function (data) {
   addHandlebarContent(data)
   $('.content').removeClass('hide')
-  $('#selectRecipe input[name="id"]').val('')
 }
 
 // const showUpdatedRecipeDiv = function () {
@@ -150,18 +148,41 @@ const addHandlebarContent = function (data) {
   $('.content').html(selectRecipeHtml)
 }
 
+const addHandlebarsContent = function (data) {
+  const selectRecipesHtml = RecipesTemplate({ recipes: data.recipes })
+  $('.content').html(selectRecipesHtml)
+}
+
 const addRecipeSuccess = function (data) {
+  store.id = data.recipe.id
   $('#recipe input').val('')
   hideModal()
-  store.id = data.recipe.id
-  api.selectRecipe()
-    .then(selectRecipeSuccess)
 }
 
 const hideModal = function () {
   $('#addRecipeModal').modal('hide')
   $('body').removeClass('modal-open')
   $('.modal-backdrop').remove()
+}
+
+const deleteRecipeSuccess = function () {
+  $('.messages').text('Deleted')
+  setTimeout(function () {
+    $('.messages').text('Deleted')
+  }, 500)
+}
+
+const showRecipeSuccess = function (data) {
+  if (data.recipes[0]) {
+    addHandlebarsContent(data)
+  }
+else {
+  $('.content').text('No recipes!')
+  setTimeout(function () {
+    $('.content').text('')
+  }, 1000)
+}
+$('.content').removeClass('hide')
 }
 
 module.exports = {
@@ -171,5 +192,8 @@ module.exports = {
   addRecipeFailure,
   selectRecipeSuccess,
   updateRecipeSuccess,
-  addRecipeSuccess
+  addRecipeSuccess,
+  deleteRecipeSuccess,
+  showRecipeSuccess,
+  addHandlebarsContent
 }
