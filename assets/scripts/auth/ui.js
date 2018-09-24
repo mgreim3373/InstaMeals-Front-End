@@ -78,10 +78,10 @@ const errorMessageClearForm = function () {
 }
 
 const closeModalBackground = function () {
-  $('body').removeClass('modal-open')
-  $('.modal-backdrop').remove()
   $('#recipeUpdateModal').modal('hide')
   $('#selectRecipeModal').modal('hide')
+  $('body').removeClass('modal-open')
+  $('.modal-backdrop').remove()
 }
 
 module.exports = {

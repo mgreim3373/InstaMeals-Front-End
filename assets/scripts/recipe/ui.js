@@ -2,7 +2,7 @@
 
 const RecipesTemplate = require('../templates/recipes.handlebars')
 const RecipeTemplate = require('../templates/recipe.handlebars')
-const authUI = require('../auth/ui.js')
+const authUI = require('../auth/ui')
 
 const addRecipeFailure = function (data) {
   $('#recipe input[name="prep_time"]').val('Invalid Number')
@@ -111,31 +111,36 @@ const selectRecipeFailure = function (data) {
 }
 
 const updateRecipeSuccess = function (data) {
+  closeModal()
   $('.recipeUpdate input').val('')
-  authUI.closeModalBackground()
 }
+
+// const selectRecipeSuccess = function (data) {
+//   const selectUpdatedRecipeHtml = RecipeTemplate({ recipe: data.recipe })
+//   $('.content').addClass('hide')
+//   $('.updateRecipeDiv').html(selectUpdatedRecipeHtml)
+//   $('.updateRecipeDiv').removeClass('hide')
+//   authUI.closeModalBackground()
+// }
 
 const selectRecipeSuccess = function (data) {
-  const selectUpdatedRecipeHtml = RecipeTemplate({ recipe: data.recipe })
-  $('.content').addClass('hide')
-  $('.updateRecipeDiv').html(selectUpdatedRecipeHtml)
-  $('.updateRecipeDiv').removeClass('hide')
-  authUI.closeModalBackground()
-}
-
-const selectRecipeSuccess1 = function (data) {
   const selectRecipeHtml = RecipeTemplate({ recipe: data.recipe })
   $('.content').html(selectRecipeHtml)
-  $('.updateRecipeDiv').addClass('hide')
   $('.content').removeClass('hide')
   $('#selectRecipe input[name="id"]').val('')
 }
 
-const showUpdatedRecipeDiv = function () {
-  $('.updateRecipeDiv').removeClass('hide')
-}
+// const showUpdatedRecipeDiv = function () {
+//   $('.updateRecipeDiv').removeClass('hide')
+// }
 
 const deleteRecipeFailure = function (data) {
+}
+
+const closeModal = function () {
+  $('#recipeUpdateModal').modal('hide')
+  $('body').removeClass('modal-open')
+  $('.modal-backdrop').remove()
 }
 
 module.exports = {
@@ -144,7 +149,5 @@ module.exports = {
   selectRecipeFailure,
   addRecipeFailure,
   selectRecipeSuccess,
-  updateRecipeSuccess,
-  showUpdatedRecipeDiv,
-  selectRecipeSuccess1
+  updateRecipeSuccess
 }

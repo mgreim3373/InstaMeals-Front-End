@@ -19,7 +19,7 @@ const onSelectRecipe = function (event) {
   if (data.id !== '') {
     store.id = data.id
     api.selectRecipe()
-      .then(ui.selectRecipeSuccess1)
+      .then(ui.selectRecipeSuccess)
       .then(addHandlebarClickFunctions)
       .catch(ui.selectRecipeFailure)
   } else {
@@ -33,7 +33,7 @@ const onUpdateRecipe = function (event) {
   api.updateRecipe(data)
     .then(ui.updateRecipeSuccess)
     .then(api.selectRecipe)
-    .then(ui.showUpdatedRecipeDiv)
+    .then(ui.selectRecipeSuccess)
     .then(addHandlebarClickFunctions)
     .catch(ui.updateRecipeFailure)
 }
