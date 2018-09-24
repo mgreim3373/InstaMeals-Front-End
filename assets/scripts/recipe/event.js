@@ -7,60 +7,35 @@ const store = require('../store')
 const api = require('./api')
 const ui = require('./ui')
 
+const addHandlebarClickFunctions = function () {
+  $('.deleteRecipe').on('click', onDeleteRecipe)
+  $('.updateRecipeButton').on('click', fillInputs)
+  $('.showRecipes').on('click', onShowRecipes)
+}
+
 const onSelectRecipe = function (event) {
   event.preventDefault()
   const data = getFormFields(this)
   if (data.id !== '') {
     store.id = data.id
     api.selectRecipe()
-      .then(selectRecipeSuccess)
+      .then(ui.selectRecipeSuccess1)
+      .then(addHandlebarClickFunctions)
       .catch(ui.selectRecipeFailure)
-    }
-  else {
+  } else {
     ui.selectRecipeFailure()
   }
-}
-const selectRecipeSuccess = function (data) {
-  const selectRecipeHtml = RecipeTemplate({ recipe: data.recipe })
-  $('.content').html(selectRecipeHtml)
-  $('#selectRecipeModal').modal('hide')
-  $('body').removeClass('modal-open')
-  $('.modal-backdrop').remove()
-  $('.updateRecipeDiv').addClass('hide')
-  $('.content').removeClass('hide')
-  $('.deleteRecipe').on('click', onDeleteRecipe)
-  $('#selectRecipe input[name="id"]').val('')
-  $('.updateRecipeButton').on('click', fillInputs)
-  $('.showRecipes').on('click', onShowRecipes)
 }
 
 const onUpdateRecipe = function (event) {
   event.preventDefault()
   const data = getFormFields(this)
   api.updateRecipe(data)
-    .then(updateRecipeSuccess)
+    .then(ui.updateRecipeSuccess)
+    .then(api.selectRecipe)
+    .then(ui.showUpdatedRecipeDiv)
+    .then(addHandlebarClickFunctions)
     .catch(ui.updateRecipeFailure)
-}
-const updateRecipeSuccess = function (data) {
-  $('.recipeUpdate input').val('')
-  $('.recipeUpdate input[type="submit"]').val('Update')
-  $('#recipeUpdateModal').modal('hide')
-  $('body').removeClass('modal-open')
-  $('.modal-backdrop').remove()
-  api.selectRecipe()
-    .then(selectUpdatedRecipeSuccess)
-}
-
-const selectUpdatedRecipeSuccess = function (data) {
-  $('.updateRecipeDiv').removeClass('hide')
-  const selectUpdatedRecipeHtml = RecipeTemplate({ recipe: data.recipe })
-  $('.content').addClass('hide')
-  $('.updateRecipeDiv').html(selectUpdatedRecipeHtml)
-  $('.deleteRecipe').on('click', onDeleteRecipe)
-  $('.updateRecipeButton').on('click', fillInputs)
-  $('.showRecipes').on('click', onShowRecipes)
-  $('body').removeClass('modal-open')
-  $('.modal-backdrop').remove()
 }
 
 const onAddRecipe = function (event) {

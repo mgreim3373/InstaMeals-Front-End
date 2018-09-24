@@ -1,5 +1,9 @@
 'use strict'
 
+const RecipesTemplate = require('../templates/recipes.handlebars')
+const RecipeTemplate = require('../templates/recipe.handlebars')
+const authUI = require('../auth/ui.js')
+
 const addRecipeFailure = function (data) {
   $('#recipe input[name="prep_time"]').val('Invalid Number')
   $('#recipe input[name="name"]').val('Invalid Input')
@@ -94,6 +98,7 @@ const updateRecipeFailure = function (data) {
   )
 }
 
+
 const selectRecipeFailure = function (data) {
   setTimeout(function () {
   $('#selectRecipe input[name="id"]').val('Invalid Entry')
@@ -105,6 +110,31 @@ const selectRecipeFailure = function (data) {
 }, 107)
 }
 
+const updateRecipeSuccess = function (data) {
+  $('.recipeUpdate input').val('')
+  authUI.closeModalBackground()
+}
+
+const selectRecipeSuccess = function (data) {
+  const selectUpdatedRecipeHtml = RecipeTemplate({ recipe: data.recipe })
+  $('.content').addClass('hide')
+  $('.updateRecipeDiv').html(selectUpdatedRecipeHtml)
+  $('.updateRecipeDiv').removeClass('hide')
+  authUI.closeModalBackground()
+}
+
+const selectRecipeSuccess1 = function (data) {
+  const selectRecipeHtml = RecipeTemplate({ recipe: data.recipe })
+  $('.content').html(selectRecipeHtml)
+  $('.updateRecipeDiv').addClass('hide')
+  $('.content').removeClass('hide')
+  $('#selectRecipe input[name="id"]').val('')
+}
+
+const showUpdatedRecipeDiv = function () {
+  $('.updateRecipeDiv').removeClass('hide')
+}
+
 const deleteRecipeFailure = function (data) {
 }
 
@@ -112,5 +142,9 @@ module.exports = {
   updateRecipeFailure,
   deleteRecipeFailure,
   selectRecipeFailure,
-  addRecipeFailure
+  addRecipeFailure,
+  selectRecipeSuccess,
+  updateRecipeSuccess,
+  showUpdatedRecipeDiv,
+  selectRecipeSuccess1
 }

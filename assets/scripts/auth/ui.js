@@ -30,12 +30,10 @@ const signOutFailure = function () {
 const changePasswordSuccess = function () {
   $('#change-password input').val('Change Password Success')
   $('#change-password input').css('color', 'green')
-  $('#change-password input[type=submit]').val('Change Password')
   setTimeout(function () {
     $('#change-password input').css('color', 'black')
     $('#passwordChange').modal('hide')
     $('#change-password input').val('')
-    $('#change-password input[type=submit]').val('Change Password')
     closeModalBackground()
   }, 1000
   )
@@ -44,10 +42,8 @@ const changePasswordSuccess = function () {
 const changePasswordFailure = function () {
   $('#change-password input').val('Input Error')
   $('#change-password input').css('color', 'red')
-  $('#change-password input[type=submit]').val('Change Password')
   setTimeout(function () {
     $('#change-password input').val('')
-    $('#change-password input[type=submit]').val('Change Password')
     $('#change-password input').css('color', 'black')
   }, 1000
   )
@@ -84,6 +80,8 @@ const errorMessageClearForm = function () {
 const closeModalBackground = function () {
   $('body').removeClass('modal-open')
   $('.modal-backdrop').remove()
+  $('#recipeUpdateModal').modal('hide')
+  $('#selectRecipeModal').modal('hide')
 }
 
 module.exports = {
