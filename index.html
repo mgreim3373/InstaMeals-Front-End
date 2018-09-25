@@ -13,26 +13,25 @@
     </head>
     <body>
       <section class='auth-container card-container shadow'>
-    <!-- Start of sign in card -->
 
+    <!-- Start of sign in card -->
         <div id='signInCard' class="container card-body">
-          <h5 class="card-title text-center">Sign In</h5>
+          <h3 class="card-title text-center">Sign In</h5>
           <form class="form-signin" id="sign-in">
               <input type="email" name="credentials[email]" class="form-control" placeholder="Enter email" required autofocus>
               <label for="inputEmail">Email address</label>
               <input type="password" name="credentials[password]" class="form-control" placeholder="Password" required>
               <label for="inputPassword">Password</label>
               <button class="btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
-              <p id="to-signup">New User</p>
-              <p class="message hide">Incorrect input</p>
+              <p id="to-signup" class="text-center">New User</p>
+              <p class="message hide">Incorrect Input</p>
           </form>
         </div>
-
       <!-- End of card -->
 
       <!-- Start of sign up card -->
         <div id='signUpCard' class="card-body hide">
-          <h5 class="card-title text-center">Sign Up</h5>
+          <h3 class="card-title text-center">Sign Up</h5>
           <form class="form-signin" id="sign-up">
               <input type="email" name="credentials[email]" class="form-control" placeholder="Enter email" required autofocus>
               <label for="inputEmail">Email address</label>
@@ -41,52 +40,55 @@
               <input type="password" name="credentials[password_confirmation]" class="form-control" placeholder="Password">
               <label for="inputPassword">Password Confirmation</label>
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign Up</button>
-              <p id="to-login">Back</p>
-              <p class="message hide">Incorrect input</p>
+              <p id="to-login" class="text-center">Back</p>
+              <p class="message hide">Incorrect Input</p>
           </form>
         </div>
-    </section>
+      </section>
       <!-- End of card -->
-<!-- nav bar start-->
+
+      <!-- nav bar start-->
       <div class = "container-fluid">
         <nav class="navbar fixed-top navbar-light"style="background-color: #e3f2fd">
           <a class="navbar-brand">InstaMeals</a>
           <button id="dropDownButton" class="navbar-toggler ml-auto hide" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-
               <li class="nav-item">
-                <a class="nav-link" id="addRecipeButton" data-toggle="modal" data-target="#addRecipeModal">Add Recipe</a>
+                <div data-toggle="collapse" data-target="#navbarSupportedContent">
+                  <a class="nav-link" id="addRecipeButton" data-toggle="modal" data-target="#addRecipeModal">Add Recipe</a>
+                </div>
               </li>
-
               <li class="nav-item">
-                <a class="nav-link" id="changePasswordButton" data-toggle="modal" data-target="#passwordChange">Change Password</a>
+                <div data-toggle="collapse" data-target="#navbarSupportedContent">
+                  <a class="nav-link" id="changePasswordButton" data-toggle="modal" data-target="#passwordChange">Change Password</a>
+                </div>
               </li>
-
               <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" data-target="#navbarSupportedContent" id="sign-out">Sign Out</a>
               </li>
-
             </ul>
           </div>
-          <form class="form-inline my-2 my-lg-0 hide" id="selectRecipe">
+          <!-- <form class="form-inline my-2 my-lg-0 hide" id="selectRecipe">
             <input class="form-control mr-sm-2" name="id" type="search" placeholder="Recipe Id" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
+            <div data-toggle="collapse" data-target="#navbarSupportedContent">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </div>
+          </form> -->
         </nav>
       </div>
       <!-- nav bar end-->
+
       <!-- add recipe start  -->
-  <section id = page-container class= "col-md-8 offset-md-2">
+      <section id = page-container class= "col-md-8 offset-md-2">
 
         <div class="modal bd-example-modal-lg" id="addRecipeModal">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h2 class="modal-title">Add a New Recipe</h2>
+                <h2 class="modal-title">Add New Recipe</h2>
                 <button type="button" class="close" data-dismiss="modal">
                   <span>&times;</span></button>
                 </div>
@@ -103,16 +105,20 @@
                     <input class="form-control" type="text" name="prep_instruction" placeholder="Preparation Instructions">
                     <input class="form-control" type="text" name="photo" placeholder="Photo">
                     <button type="submit" class="btn btn-primary">Add</button>
+                    <p class="message hide">Incorrect Input</p>
                   </form>
                 </div>
+
               </div>
             </div>
           </div>
-          <!-- add recipe end  -->
-<!-- change password modal start -->
+      <!-- add recipe end  -->
+
+      <!-- change password modal start -->
       <div class="modal bd-example-modal-lg" id="passwordChange">
         <div class="modal-dialog">
           <div class="modal-content">
+
             <div class="modal-header">
               <h2 class="modal-title">Change Password</h2>
                 <button type="button" class="close" data-dismiss="modal">
@@ -123,16 +129,20 @@
               <form id="change-password">
                 <input class="form-control" type="text" name="passwords[old]" placeholder="Old Password">
                 <input class="form-control" type="text" name="passwords[new]" placeholder="New Password">
-                <button type="submit">Change Password</button>
+                <button class="btn btn-primary" type="submit">Change Password</button>
             </form>
             </div>
+
           </div>
         </div>
       </div>
       <!-- change password modal start -->
 
+      <!-- content div start -->
       <div class = "content"></div>
-<!-- update recipe modal start -->
+      <!-- content div end -->
+
+      <!-- update recipe modal start -->
       <div class="modal bd-example-modal-lg" id='recipeUpdateModal'>
         <div class="modal-dialog">
           <div class="modal-content">
@@ -153,16 +163,17 @@
                 <input class="form-control" type="text" name="ingredient" placeholder="Ingredients">
                 <input class="form-control" type="text" name="prep_instruction" placeholder="Preparation Instructions">
                 <input class="form-control" type="text" name="photo" placeholder="Photo">
-                <button type="submit">Update</button>
+                <button class="btn btn-primary" type="submit">Update</button>
+                <p class="message hide">Incorrect Input</p>
             </form>
             </div>
           </div>
         </div>
       </div>
-<!-- update recipe modal end -->
+      <!-- update recipe modal end -->
 
     </section>
 
-    </body>
+  </body>
 
 </html>

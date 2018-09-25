@@ -5,6 +5,14 @@ const store = require('../store')
 const api = require('./api')
 const ui = require('./ui')
 
+const onSignIn = function (event) {
+  event.preventDefault()
+  const data = getFormFields(this)
+  api.signIn(data)
+    .then(ui.signInSuccess)
+    .catch(ui.signInFailure)
+}
+
 const onSignUp = function (event) {
   event.preventDefault()
   const data = getFormFields(this)
@@ -18,14 +26,6 @@ const onSignUpIn = function (event) {
   delete store.credentials.password_confirmation
   const dataWithoutPC = store.credentials
   api.signIn(dataWithoutPC)
-    .then(ui.signInSuccess)
-    .catch(ui.signInFailure)
-}
-
-const onSignIn = function (event) {
-  event.preventDefault()
-  const data = getFormFields(this)
-  api.signIn(data)
     .then(ui.signInSuccess)
     .catch(ui.signInFailure)
 }

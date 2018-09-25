@@ -7,8 +7,9 @@ const ui = require('./ui')
 
 const addHandlebarClickFunctions = function () {
   $('.deleteRecipe').on('click', onDeleteRecipe)
-  $('.updateRecipeButton').on('click', fillInputs)
   $('.showRecipes').on('click', onShowRecipes)
+  $('.recipeSelectArea').on('click', onClickSelectRecipe)
+  $('.updateRecipeButton').on('click', fillInputs)
 }
 
 const onSelectRecipe = function (event) {
@@ -24,6 +25,14 @@ const onSelectRecipe = function (event) {
   } else {
     ui.selectRecipeFailure()
   }
+}
+
+const onClickSelectRecipe = function (event) {
+  store.id = $(event.target).closest('section').data('id')
+  api.selectRecipe()
+    .then(ui.selectRecipeSuccess)
+    .then(addHandlebarClickFunctions)
+    .catch(ui.selectRecipeFailure)
 }
 
 const onUpdateRecipe = function (event) {
@@ -53,7 +62,7 @@ const onDeleteRecipe = function (event) {
   const deleteId = $(event.target).closest('div').data('id')
   store.id = deleteId
   api.deleteRecipe()
-    .then(ui.deleteRecipeSuccess)
+    // .then(ui.deleteRecipeSuccess)
     .then(api.showRecipes)
     .then(ui.showRecipeSuccess)
     .then(addHandlebarClickFunctions)
@@ -64,27 +73,29 @@ const onShowRecipes = function (event) {
   event.preventDefault()
   api.showRecipes()
     .then(ui.showRecipeSuccess)
+    .then(addHandlebarClickFunctions)
     .catch(ui.selectRecipeFailure)
 }
 
 const onShowRecipesSignin = function (event) {
   api.showRecipes()
     .then(ui.showRecipeSuccess)
+    .then(addHandlebarClickFunctions)
     .catch(ui.selectRecipeFailure)
 }
 
 const fillInputs = function (event) {
-  let recipeId = $(event.target).closest('section').data('id')
+  const recipeId = $(event.target).closest('div').data('id')
   store.id = recipeId
-  let recipeName = $(event.target).closest('section').data('name')
-  let recipePrepTime = $(event.target).closest('section').data('prep_time')
-  let recipeCookTime = $(event.target).closest('section').data('cook_time')
-  let recipeServingSize = $(event.target).closest('section').data('serving_size')
-  let recipePotmode = $(event.target).closest('section').data('pot_mode')
-  let recipePotPressure = $(event.target).closest('section').data('pot_pressure')
-  let recipeIngredients = $(event.target).closest('section').data('ingredient')
-  let recipePrep = $(event.target).closest('section').data('prep_instruction')
-  let recipePhoto = $(event.target).closest('section').data('photo')
+  const recipeName = $(event.target).closest('div').data('name')
+  const recipePrepTime = $(event.target).closest('div').data('prep_time')
+  const recipeCookTime = $(event.target).closest('div').data('cook_time')
+  const recipeServingSize = $(event.target).closest('div').data('serving_size')
+  const recipePotmode = $(event.target).closest('div').data('pot_mode')
+  const recipePotPressure = $(event.target).closest('div').data('pot_pressure')
+  const recipeIngredients = $(event.target).closest('div').data('ingredient')
+  const recipePrep = $(event.target).closest('div').data('prep_instruction')
+  const recipePhoto = $(event.target).closest('div').data('photo')
 
   $('.recipeUpdate input[name="id"]').val(recipeId)
   $('.recipeUpdate input[name="name"]').val(recipeName)

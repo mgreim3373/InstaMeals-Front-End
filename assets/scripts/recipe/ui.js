@@ -3,113 +3,32 @@
 const RecipesTemplate = require('../templates/recipes.handlebars')
 const RecipeTemplate = require('../templates/recipe.handlebars')
 const store = require('../store')
-const api = require('./api')
 
-
-const addRecipeFailure = function (data) {
-  $('#recipe input[name="prep_time"]').val('Invalid Number')
-  $('#recipe input[name="name"]').val('Invalid Input')
-  $('#recipe input[name="cook_time"]').val('Invalid Number')
-  $('#recipe input[name="serving_size"]').val('Invalid Number')
-  $('#recipe input[name="pot_mode"]').val('Invalid Input')
-  $('#recipe input[name="pot_pressure"]').val('Invalid Input')
-  $('#recipe input[name="ingredient"]').val('Invalid Input')
-  $('#recipe input[name="prep_instruction"]').val('Invalid Number')
-  $('#recipe input[name="photo"]').val('Invalid URL')
-
-  $('#recipe input[name="prep_time"]').css('color', 'red')
-  $('#recipe input[name="name"]').css('color', 'red')
-  $('#recipe input[name="cook_time"]').css('color', 'red')
-  $('#recipe input[name="serving_size"]').css('color', 'red')
-  $('#recipe input[name="pot_mode"]').css('color', 'red')
-  $('#recipe input[name="pot_pressure"]').css('color', 'red')
-  $('#recipe input[name="ingredient"]').css('color', 'red')
-  $('#recipe input[name="prep_instruction"]').css('color', 'red')
-  $('#recipe input[name="photo"]').css('color', 'red')
-
-  setTimeout(function () {
-    $('#recipe input[name="prep_time"]').val('')
-    $('#recipe input[name="name"]').val('')
-    $('#recipe input[name="cook_time"]').val('')
-    $('#recipe input[name="serving_size"]').val('')
-    $('#recipe input[name="pot_mode"]').val('')
-    $('#recipe input[name="pot_pressure"]').val('')
-    $('#recipe input[name="ingredient"]').val('')
-    $('#recipe input[name="prep_instruction"]').val('')
-    $('#recipe input[name="photo"]').val('')
-
-    $('#recipe input[name="id"]').css('color', 'black')
-    $('#recipe input[name="prep_time"]').css('color', 'black')
-    $('#recipe input[name="name"]').css('color', 'black')
-    $('#recipe input[name="cook_time"]').css('color', 'black')
-    $('#recipe input[name="serving_size"]').css('color', 'black')
-    $('#recipe input[name="pot_mode"]').css('color', 'black')
-    $('#recipe input[name="pot_pressure"]').css('color', 'black')
-    $('#recipe input[name="ingredient"]').css('color', 'black')
-    $('#recipe input[name="prep_instruction"]').css('color', 'black')
-    $('#recipe input[name="photo"]').css('color', 'black')
-  }, 1000
-  )
+const showRecipeSuccess = function (data) {
+  if (data.recipes[0]) {
+    addHandlebarsContent(data)
+  } else {
+    $('.content').text('No recipes!')
+    setTimeout(function () {
+      $('.content').text('')
+    }, 1000)
+  }
+  $('.content').removeClass('hide')
 }
 
-const updateRecipeFailure = function (data) {
-  $('.recipeUpdate input[name="id"]').val('Invalid Number')
-  $('.recipeUpdate input[name="prep_time"]').val('Invalid Number')
-  $('.recipeUpdate input[name="name"]').val('Invalid Input')
-  $('.recipeUpdate input[name="cook_time"]').val('Invalid Number')
-  $('.recipeUpdate input[name="serving_size"]').val('Invalid Number')
-  $('.recipeUpdate input[name="pot_mode"]').val('Invalid Input')
-  $('.recipeUpdate input[name="pot_pressure"]').val('Invalid Input')
-  $('.recipeUpdate input[name="ingredient"]').val('Invalid Input')
-  $('.recipeUpdate input[name="prep_instruction"]').val('Invalid Input')
-  $('.recipeUpdate input[name="photo"]').val('Invalid URL')
-
-  $('.recipeUpdate input[name="id"]').css('color', 'red')
-  $('.recipeUpdate input[name="prep_time"]').css('color', 'red')
-  $('.recipeUpdate input[name="name"]').css('color', 'red')
-  $('.recipeUpdate input[name="cook_time"]').css('color', 'red')
-  $('.recipeUpdate input[name="serving_size"]').css('color', 'red')
-  $('.recipeUpdate input[name="pot_mode"]').css('color', 'red')
-  $('.recipeUpdate input[name="pot_pressure"]').css('color', 'red')
-  $('.recipeUpdate input[name="ingredient"]').css('color', 'red')
-  $('.recipeUpdate input[name="prep_instruction"]').css('color', 'red')
-  $('.recipeUpdate input[name="photo"]').css('color', 'red')
-  setTimeout(function () {
-    $('.recipeUpdate input[name="id"]').val('')
-    $('.recipeUpdate input[name="prep_time"]').val('')
-    $('.recipeUpdate input[name="name"]').val('')
-    $('.recipeUpdate input[name="cook_time"]').val('')
-    $('.recipeUpdate input[name="serving_size"]').val('')
-    $('.recipeUpdate input[name="pot_mode"]').val('')
-    $('.recipeUpdate input[name="pot_pressure"]').val('')
-    $('.recipeUpdate input[name="ingredient"]').val('')
-    $('.recipeUpdate input[name="prep_instruction"]').val('')
-    $('.recipeUpdate input[name="photo"]').val('')
-
-    $('.recipeUpdate input[name="id"]').css('color', 'black')
-    $('.recipeUpdate input[name="prep_time"]').css('color', 'black')
-    $('.recipeUpdate input[name="name"]').css('color', 'black')
-    $('.recipeUpdate input[name="cook_time"]').css('color', 'black')
-    $('.recipeUpdate input[name="serving_size"]').css('color', 'black')
-    $('.recipeUpdate input[name="pot_mode"]').css('color', 'black')
-    $('.recipeUpdate input[name="pot_pressure"]').css('color', 'black')
-    $('.recipeUpdate input[name="ingredient"]').css('color', 'black')
-    $('.recipeUpdate input[name="prep_instruction"]').css('color', 'black')
-    $('.recipeUpdate input[name="photo"]').css('color', 'black')
-  }, 1000
-  )
+const selectRecipeSuccess = function (data) {
+  addHandlebarContent(data)
+  $('.content').removeClass('hide')
 }
-
 
 const selectRecipeFailure = function (data) {
   setTimeout(function () {
-  $('#selectRecipe input[name="id"]').val('Invalid Entry')
-  $('#selectRecipe input[name="id"]').css('color', 'red')
-  setTimeout(function () {
-    $('#selectRecipe input[name="id"]').val('')
-    $('#selectRecipe input[name="id"]').css('color', 'black')
-  }, 500)
-}, 107)
+    $('#selectRecipe input[name="id"]').css('color', 'red')
+    setTimeout(function () {
+      $('#selectRecipe input[name="id"]').val('')
+      $('#selectRecipe input[name="id"]').css('color', 'black')
+    }, 500)
+  }, 107)
 }
 
 const updateRecipeSuccess = function (data) {
@@ -117,24 +36,8 @@ const updateRecipeSuccess = function (data) {
   $('.recipeUpdate input').val('')
 }
 
-// const selectRecipeSuccess = function (data) {
-//   const selectUpdatedRecipeHtml = RecipeTemplate({ recipe: data.recipe })
-//   $('.content').addClass('hide')
-//   $('.updateRecipeDiv').html(selectUpdatedRecipeHtml)
-//   $('.updateRecipeDiv').removeClass('hide')
-//   authUI.closeModalBackground()
-// }
-
-const selectRecipeSuccess = function (data) {
-  addHandlebarContent(data)
-  $('.content').removeClass('hide')
-}
-
-// const showUpdatedRecipeDiv = function () {
-//   $('.updateRecipeDiv').removeClass('hide')
-// }
-
-const deleteRecipeFailure = function (data) {
+const updateRecipeFailure = function (data) {
+  showErrorMessage()
 }
 
 const closeModal = function () {
@@ -159,6 +62,10 @@ const addRecipeSuccess = function (data) {
   hideModal()
 }
 
+const addRecipeFailure = function (data) {
+  showErrorMessage()
+}
+
 const hideModal = function () {
   $('#addRecipeModal').modal('hide')
   $('body').removeClass('modal-open')
@@ -172,17 +79,15 @@ const deleteRecipeSuccess = function () {
   }, 500)
 }
 
-const showRecipeSuccess = function (data) {
-  if (data.recipes[0]) {
-    addHandlebarsContent(data)
-  }
-else {
-  $('.content').text('No recipes!')
-  setTimeout(function () {
-    $('.content').text('')
-  }, 1000)
+const deleteRecipeFailure = function (data) {
 }
-$('.content').removeClass('hide')
+
+const showErrorMessage = function () {
+  $('.message').removeClass('hide')
+  setTimeout(function () {
+    $('.message').addClass('hide')
+  }, 1000
+  )
 }
 
 module.exports = {

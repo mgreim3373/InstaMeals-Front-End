@@ -3,10 +3,6 @@
 const store = require('../store')
 const recipeEvent = require('../recipe/event')
 
-const signUpFailure = function () {
-  errorMessageClearForm()
-}
-
 const signInSuccess = function (data) {
   store.user = data.user
   $('#sign-up input').val('')
@@ -16,6 +12,10 @@ const signInSuccess = function (data) {
 }
 
 const signInFailure = function () {
+  errorMessageClearForm()
+}
+
+const signUpFailure = function () {
   errorMessageClearForm()
 }
 
