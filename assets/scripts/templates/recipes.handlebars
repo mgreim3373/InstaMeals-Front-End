@@ -3,7 +3,9 @@
 <div class='recipeSelectArea'>
 <section data-id="{{recipe.id}}">
     <h1> {{recipe.name}} </h1>
-    <p class="text-center"> Prep Time: {{recipe.prep_time}} Cook Time: {{recipe.cook_time}} Serving Size: {{recipe.serving_size}} </p>
+    <p class="text-center handlebarsHeader"> Prep Time: {{recipe.prep_time}},</p>
+    <p class="text-center handlebarsHeader"> Cook Time: {{recipe.cook_time}},</p>
+    <p class="text-center handlebarsHeader"> Serving Size: {{recipe.serving_size}}</p>
     <img class ="img-fluid" alt="Responsive image" src="{{recipe.photo}}">
 </div>
   {{#if recipe.editable}}

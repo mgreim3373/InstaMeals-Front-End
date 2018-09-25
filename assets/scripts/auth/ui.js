@@ -2,6 +2,7 @@
 
 const store = require('../store')
 const recipeEvent = require('../recipe/event')
+const recipeUI = require('../recipe/ui')
 
 const signInSuccess = function (data) {
   store.user = data.user
@@ -12,11 +13,13 @@ const signInSuccess = function (data) {
 }
 
 const signInFailure = function () {
-  errorMessageClearForm()
+  clearForm()
+  recipeUI.showErrorMessage()
 }
 
 const signUpFailure = function () {
-  errorMessageClearForm()
+  clearForm()
+  recipeUI.showErrorMessage()
 }
 
 const signOutSuccess = function () {
@@ -40,13 +43,8 @@ const changePasswordSuccess = function () {
 }
 
 const changePasswordFailure = function () {
-  $('#change-password input').val('Input Error')
-  $('#change-password input').css('color', 'red')
-  setTimeout(function () {
-    $('#change-password input').val('')
-    $('#change-password input').css('color', 'black')
-  }, 1000
-  )
+  $('#change-password input').val('')
+  recipeUI.showErrorMessage()
 }
 
 const hideLoginPage = function () {
@@ -63,18 +61,9 @@ const showLoginPage = function () {
   $('#selectRecipe').addClass('hide')
 }
 
-const errorMessageClearForm = function () {
-  $('#sign-in input').val('Invalid Entry')
-  $('#sign-in input').css('color', 'red')
-  $('#sign-up input').val('Invalid Entry')
-  $('#sign-up input').css('color', 'red')
-  setTimeout(function () {
-    $('#sign-up input').val('')
-    $('#sign-up input').css('color', 'black')
-    $('#sign-in input').val('')
-    $('#sign-in input').css('color', 'black')
-  }, 1000
-  )
+const clearForm = function () {
+  $('#sign-up input').val('')
+  $('#sign-in input').val('')
 }
 
 const closeModalBackground = function () {
@@ -92,5 +81,6 @@ module.exports = {
   signOutFailure,
   changePasswordSuccess,
   changePasswordFailure,
-  closeModalBackground
+  closeModalBackground,
+  clearForm
 }

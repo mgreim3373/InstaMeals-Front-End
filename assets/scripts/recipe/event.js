@@ -62,7 +62,6 @@ const onDeleteRecipe = function (event) {
   const deleteId = $(event.target).closest('div').data('id')
   store.id = deleteId
   api.deleteRecipe()
-    // .then(ui.deleteRecipeSuccess)
     .then(api.showRecipes)
     .then(ui.showRecipeSuccess)
     .then(addHandlebarClickFunctions)
@@ -104,8 +103,8 @@ const fillInputs = function (event) {
   $('.recipeUpdate input[name="serving_size"]').val(recipeServingSize)
   $('.recipeUpdate input[name="pot_mode"]').val(recipePotmode)
   $('.recipeUpdate input[name="pot_pressure"]').val(recipePotPressure)
-  $('.recipeUpdate input[name="ingredient"]').val(recipeIngredients)
-  $('.recipeUpdate input[name="prep_instruction"]').val(recipePrep)
+  $('.recipeUpdate textarea[name="ingredient"]').val(recipeIngredients)
+  $('.recipeUpdate textarea[name="prep_instruction"]').val(recipePrep)
   $('.recipeUpdate input[name="photo"]').val(recipePhoto)
 }
 

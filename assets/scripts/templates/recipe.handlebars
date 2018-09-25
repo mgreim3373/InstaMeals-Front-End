@@ -1,14 +1,16 @@
-<div class = 'handlebars shadow'>
+<div class = 'handlebars'>
 <section data-id="{{recipe.id}}">
     <h1> {{recipe.name}} </h1>
-    <p> Prep Time: {{recipe.prep_time}} </p>
-    <p> Cook Time: {{recipe.cook_time}} </p>
-    <p> Serving Size: {{recipe.serving_size}} </p>
-    <p> Pot Mode: {{recipe.pot_mode}} </p>
-    <p> Pot Pressure: {{recipe.pot_pressure}} </p>
-    <p> Ingredients: {{recipe.ingredient}} </p>
-    <p> Prep Instructions: {{recipe.prep_instruction}} </p>
-    <p> User: {{recipe.user.email}} </p>
+    <div class="handlebarsHeaderContainer">
+      <p class = handlebarsHeader> Prep Time: {{recipe.prep_time}},</p>
+      <p class = handlebarsHeader> Cook Time: {{recipe.cook_time}},</p>
+      <p class = handlebarsHeader> Serving Size: {{recipe.serving_size}}</p>
+    </div>
+    <p class = handlebarsHeader> Pot Mode: <p>{{recipe.pot_mode}}</p> </p>
+    <p class = handlebarsHeader> Pot Pressure: <p>{{recipe.pot_pressure}}</p> </p>
+    <p class = handlebarsHeader> Ingredients: <p class ='spacing'>{{recipe.ingredient}}</p> </p>
+    <p class = handlebarsHeader> Prep Instructions: <p class ='spacing'>{{recipe.prep_instruction}}</p> </p>
+    <p class = handlebarsHeader> User: <p>{{recipe.user.email}}</p> </p>
     <img class ="img-fluid" alt="Responsive image" src="{{recipe.photo}}">
 
 

@@ -48,11 +48,13 @@ const onChangePassword = function (event) {
 const toSignIn = function (event) {
   $('#signInCard').removeClass('hide')
   $('#signUpCard').addClass('hide')
+  ui.clearForm()
 }
 
 const toSignUp = function (event) {
   $('#signInCard').addClass('hide')
   $('#signUpCard').removeClass('hide')
+  ui.clearForm()
 }
 
 const addHandlers = () => {

@@ -69,6 +69,8 @@ p {
 
 .recipeSelectArea, #to-signup, #to-login {
   cursor: pointer;
+  text-align: center;
+
 }
 
 .deleteRecipe, .updateRecipeButton, .showRecipes {
@@ -77,4 +79,17 @@ p {
 
 .message {
   color: red;
+}
+
+.spacing {
+  white-space: pre-wrap;
+}
+
+.handlebarsHeader {
+  font-weight: bold;
+  display: inline-block;
+}
+
+.handlebarsHeaderContainer {
+  text-align: center;
 }

@@ -72,13 +72,6 @@ const hideModal = function () {
   $('.modal-backdrop').remove()
 }
 
-const deleteRecipeSuccess = function () {
-  $('.messages').text('Deleted')
-  setTimeout(function () {
-    $('.messages').text('Deleted')
-  }, 500)
-}
-
 const deleteRecipeFailure = function (data) {
 }
 
@@ -98,7 +91,7 @@ module.exports = {
   selectRecipeSuccess,
   updateRecipeSuccess,
   addRecipeSuccess,
-  deleteRecipeSuccess,
   showRecipeSuccess,
-  addHandlebarsContent
+  addHandlebarsContent,
+  showErrorMessage
 }
