@@ -33,7 +33,8 @@ const selectRecipeFailure = function (data) {
 
 const updateRecipeSuccess = function (data) {
   closeModal()
-  $('.recipeUpdate input').val('')
+  $('#recipe input').val('')
+  $('#recipe textarea').val('')
 }
 
 const updateRecipeFailure = function (data) {
@@ -59,6 +60,7 @@ const addHandlebarsContent = function (data) {
 const addRecipeSuccess = function (data) {
   store.id = data.recipe.id
   $('#recipe input').val('')
+  $('#recipe textarea').val('')
   hideModal()
 }
 
