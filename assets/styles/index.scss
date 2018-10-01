@@ -51,14 +51,6 @@ p {
   width: 100%;
 }
 
-.card-body-signin {
-  padding-top: 80px;
-}
-
-.card-body-signup {
-  padding-top: 120px;
-}
-
 
 .handlebars {
   background: white;
@@ -100,4 +92,10 @@ p {
 
 .handlebarsHeaderContainer {
   text-align: center;
+}
+
+@media (max-height: 430px) {
+.auth-container {
+  margin-top: 40px;
+}
 }
